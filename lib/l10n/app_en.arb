@@ -1,0 +1,20 @@
+{
+  "@@locale": "en",
+  "appTitle": "WishQueue",
+  "wishlistTitle": "Wishlist",
+  "addItem": "Add item",
+  "addIncome": "Add income",
+  "distribute": "Distribute",
+  "cat_auto": "Auto",
+  "cat_home": "Home",
+  "cat_tools": "Tools",
+  "cat_other": "Other",
+  "priority_urgent": "Urgent",
+  "priority_high": "High",
+  "priority_normal": "Normal",
+  "priority_someday": "Someday",
+  "status_planned": "Planned",
+  "status_reserved": "Reserved",
+  "status_bought": "Bought",
+  "status_cancelled": "Cancelled"
+}

@@ -1,0 +1,20 @@
+{
+  "@@locale": "ru",
+  "appTitle": "Очередь желаемого",
+  "wishlistTitle": "Список к покупке",
+  "addItem": "Добавить товар",
+  "addIncome": "Добавить приход",
+  "distribute": "Распределить",
+  "cat_auto": "Авто",
+  "cat_home": "Дом",
+  "cat_tools": "Инструменты",
+  "cat_other": "Другое",
+  "priority_urgent": "Неотложный",
+  "priority_high": "Высокий",
+  "priority_normal": "Обычный",
+  "priority_someday": "Когда-нибудь",
+  "status_planned": "Запланирован",
+  "status_reserved": "Зарезервирован",
+  "status_bought": "Куплен",
+  "status_cancelled": "Отменен"
+}
