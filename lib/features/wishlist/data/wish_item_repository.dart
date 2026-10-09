@@ -128,12 +128,15 @@ class WishItemRepository {
     return getById(id);
   }
 
-  /// Резервирует позицию под поступление.
+/// Резервирует позицию.
   ///
-  /// Разрешено из статусов `planned` и `reserved` (в последнем случае —
+  /// [incomeId] — необязательная привязка к поступлению. Если не указан,
+  /// позиция просто помечается как «планирую купить» без привязки к деньгам.
+  ///
+  /// Разрешено из статусов `planned` и `reserved` (во втором случае —
   /// перезаписываем `incomeId`, пользователь перераспределил).
   /// Не разрешено из `bought` и `cancelled`.
-  Future<WishItem> reserve(String id, String incomeId) async {
+  Future<WishItem> reserve(String id, {String? incomeId}) async {
     final now = DateTime.now().toUtc();
 
     final affected =
@@ -276,15 +279,61 @@ class WishItemRepository {
     }
   }
 
+  /// Позиции, которые ещё «в игре»: `planned` и `reserved`.
+  ///
+  /// Используется на главной вкладке. Исключает `bought` и `cancelled`.
+  Stream<List<WishItem>> watchActive() {
+    final query = _db.select(_db.wishItems)
+      ..where(
+        (t) =>
+            t.deletedAt.isNull() &
+            (t.status.equals(WishItemStatus.planned.dbValue) |
+                t.status.equals(WishItemStatus.reserved.dbValue)),
+      );
+    return query.watch().map(_sortItems);
+  }
+
+  /// Только купленные позиции.
+  ///
+  /// Используется на вкладке «Куплено».
+  Stream<List<WishItem>> watchBought() {
+    final query = _db.select(_db.wishItems)
+      ..where(
+        (t) =>
+            t.deletedAt.isNull() &
+            t.status.equals(WishItemStatus.bought.dbValue),
+      );
+    return query.watch().map(_sortItems);
+  }
+
   // --- helpers ---
 
+/// Сортировка позиций для отображения в списке.
+  ///
+  /// Порядок:
+  /// 1. `reserved` — вверху (это то, что планирую купить).
+  /// 2. `planned` — ниже.
+  /// 3. Внутри одной группы статусов — по приоритету (urgent → someday).
+  /// 4. Внутри одного приоритета — по дате создания (старые сверху).
+  ///
+  /// `bought` и `cancelled` не должны попадать сюда — они отфильтрованы
+  /// на уровне запросов (разные вкладки).
   List<WishItem> _sortItems(List<WishItem> items) {
     final sorted = [...items];
     sorted.sort((a, b) {
+      // 1. Статус: reserved (0) < planned (1).
+      final sa = a.status == WishItemStatus.reserved.dbValue ? 0 : 1;
+      final sb = b.status == WishItemStatus.reserved.dbValue ? 0 : 1;
+      final byStatus = sa.compareTo(sb);
+      if (byStatus != 0) return byStatus;
+
+      // 2. Приоритет.
       final pa = WishItemPriority.fromDb(a.priority).index;
       final pb = WishItemPriority.fromDb(b.priority).index;
       final byPriority = pa.compareTo(pb);
       if (byPriority != 0) return byPriority;
+
+      // 3. Дата создания.
       return a.createdAt.compareTo(b.createdAt);
     });
     return sorted;
