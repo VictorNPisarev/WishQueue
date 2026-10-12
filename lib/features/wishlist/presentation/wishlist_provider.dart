@@ -5,12 +5,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/db/database.dart';
 import '../data/wish_item_repository_provider.dart';
 
-/// Стрим всех неудалённых позиций.
-///
-/// UI подписывается через `ref.watch(wishlistProvider)`, автоматически
-/// перерисовывается при любом изменении таблицы `wish_items` (drift
-/// перезапускает запрос), при ошибке — отдаёт `AsyncError`.
-final wishlistProvider = StreamProvider<List<WishItem>>((ref) {
+/// Активные позиции: `planned` + `reserved`.
+/// Сортировка: reserved сверху, затем по приоритету.
+final activeWishlistProvider = StreamProvider<List<WishItem>>((ref) {
   final repo = ref.watch(wishItemRepositoryProvider);
-  return repo.watchAll();
+  return repo.watchActive();
+});
+
+/// Купленные позиции (только `bought`).
+final boughtWishlistProvider = StreamProvider<List<WishItem>>((ref) {
+  final repo = ref.watch(wishItemRepositoryProvider);
+  return repo.watchBought();
 });
