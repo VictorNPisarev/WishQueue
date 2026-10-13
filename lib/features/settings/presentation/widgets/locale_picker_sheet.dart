@@ -54,6 +54,11 @@ class _LocalePickerSheet extends ConsumerWidget {
     );
   }
 
+  /// [AppLocale.system] локализуется, остальные — самоназвания.
+  String _localeLabel(AppLocale locale, AppLocalizations l10n) {
+    return locale == AppLocale.system ? l10n.languageSystem : locale.nativeName;
+  }
+
   Future<void> _onSelect(
     BuildContext context,
     WidgetRef ref,
@@ -61,15 +66,5 @@ class _LocalePickerSheet extends ConsumerWidget {
   ) async {
     Navigator.pop(context);
     await ref.read(appLocaleProvider.notifier).setLocale(locale);
-  }
-
-  String _localeLabel(AppLocale locale, AppLocalizations l10n) {
-    return switch (locale) {
-      AppLocale.system => l10n.languageSystem,
-      AppLocale.en => l10n.languageEnglish,
-      AppLocale.ru => l10n.languageRussian,
-      AppLocale.esMx => l10n.languageSpanishMx,
-      AppLocale.zhHans => l10n.languageChineseSimplified,
-    };
   }
 }

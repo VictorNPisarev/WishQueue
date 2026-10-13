@@ -62,9 +62,5 @@
   "categoriesLoadError": "No se pudieron cargar las categorías",
 
   "language": "Idioma",
-  "languageSystem": "Sistema",
-  "languageEnglish": "Inglés",
-  "languageRussian": "Ruso",
-  "languageSpanishMx": "Español (México)",
-  "languageChineseSimplified": "Chino simplificado"
+  "languageSystem": "Sistema"
 }

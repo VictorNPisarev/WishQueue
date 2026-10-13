@@ -6,20 +6,31 @@ import 'dart:ui';
 ///
 /// [system] — следовать за системной локалью.
 /// Остальные — принудительно заданная локаль.
+///
+/// [nativeName] — название языка на нём самом (стандарт i18n).
+/// Не локализуется через .arb: пользователь ищет знакомое написание.
+/// Исключение — [system], его название локализуется в UI.
 enum AppLocale {
-  system('system', null),
-  en('en', Locale('en')),
-  ru('ru', Locale('ru')),
-  esMx('es_MX', Locale('es', 'MX')),
-  zhHans('zh_Hans', Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'));
+  system('system', null, 'System'),
+  en('en', Locale('en'), 'English'),
+  ru('ru', Locale('ru'), 'Русский'),
+  esMx('es_MX', Locale('es', 'MX'), 'Español (México)'),
+  zhHans(
+    'zh_Hans',
+    Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'),
+    '中文（简体）',
+  );
 
-  const AppLocale(this.key, this.locale);
+  const AppLocale(this.key, this.locale, this.nativeName);
 
   /// Ключ для хранения в БД.
   final String key;
 
   /// Локаль для MaterialApp. `null` — следовать за системой.
   final Locale? locale;
+
+  /// Название языка на нём самом.
+  final String nativeName;
 
   static const AppLocale defaultLocale = AppLocale.system;
 

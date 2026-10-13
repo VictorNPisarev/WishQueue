@@ -62,16 +62,5 @@
   "categoriesLoadError": "无法加载类别",
 
   "language": "语言",
-  "languageSystem": "系统",
-  "languageEnglish": "英语",
-  "languageRussian": "俄语",
-  "languageSpanishMx": "西班牙语（墨西哥）",
-  "languageChineseSimplified": "中文（简体）",
-
-  "language": "语言",
-  "languageSystem": "系统",
-  "languageEnglish": "英语",
-  "languageRussian": "俄语",
-  "languageSpanishMx": "西班牙语（墨西哥）",
-  "languageChineseSimplified": "中文（简体）"
+  "languageSystem": "系统"
 }

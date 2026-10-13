@@ -62,9 +62,5 @@
   "categoriesLoadError": "Не удалось загрузить категории",
 
   "language": "Язык",
-  "languageSystem": "Системный",
-  "languageEnglish": "Английский",
-  "languageRussian": "Русский",
-  "languageSpanishMx": "Испанский (Мексика)",
-  "languageChineseSimplified": "Китайский (Упрощенный)"
+  "languageSystem": "Системный"
 }
