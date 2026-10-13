@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/theme_seed.dart';
 import '../theme_provider.dart';
 
@@ -19,6 +20,7 @@ class _ThemePickerSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final current =
         ref.watch(themeSeedProvider).valueOrNull ?? ThemeSeed.defaultSeed;
 
@@ -26,11 +28,11 @@ class _ThemePickerSheet extends ConsumerWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Padding(
-            padding: EdgeInsets.all(16),
+          Padding(
+            padding: const EdgeInsets.all(16),
             child: Text(
-              'Цвет темы',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              l10n.themeColor,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
           ),
           const Divider(height: 1),
@@ -45,6 +47,7 @@ class _ThemePickerSheet extends ConsumerWidget {
                     (seed) => _SeedCircle(
                       seed: seed,
                       isSelected: seed == current,
+                      selectedLabel: l10n.selected,
                       onTap: () => _onSelect(context, ref, seed),
                     ),
                   )
@@ -62,7 +65,7 @@ class _ThemePickerSheet extends ConsumerWidget {
     WidgetRef ref,
     ThemeSeed seed,
   ) async {
-    Navigator.pop(context); // закрываем меню
+    Navigator.pop(context);
     await ref.read(themeSeedProvider.notifier).setSeed(seed);
   }
 }
@@ -71,11 +74,13 @@ class _SeedCircle extends StatelessWidget {
   const _SeedCircle({
     required this.seed,
     required this.isSelected,
+    required this.selectedLabel,
     required this.onTap,
   });
 
   final ThemeSeed seed;
   final bool isSelected;
+  final String selectedLabel;
   final VoidCallback onTap;
 
   @override
@@ -104,9 +109,9 @@ class _SeedCircle extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           if (isSelected)
-            const Text(
-              'Выбрано',
-              style: TextStyle(fontSize: 11, color: Colors.grey),
+            Text(
+              selectedLabel,
+              style: const TextStyle(fontSize: 11, color: Colors.grey),
             ),
         ],
       ),

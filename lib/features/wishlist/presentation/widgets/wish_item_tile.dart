@@ -137,18 +137,19 @@ class _Trailing extends StatelessWidget {
             child: Icon(Icons.check_circle, size: 18, color: Colors.green),
           ),
         Text(
-          _priceText(),
+          _priceText(context),
           style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
         ),
       ],
     );
   }
 
-  String _priceText() {
+  String _priceText(BuildContext context) {
     final price = status == WishItemStatus.bought
         ? (item.actualPrice ?? item.estimatedPrice)
         : item.estimatedPrice;
     if (price == null) return '—';
-    return price.format(locale: 'ru_RU');
+    final locale = Localizations.localeOf(context).toString();
+    return price.format(locale: locale);
   }
 }

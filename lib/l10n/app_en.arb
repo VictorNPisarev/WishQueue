@@ -16,5 +16,55 @@
   "status_planned": "Planned",
   "status_reserved": "Reserved",
   "status_bought": "Bought",
-  "status_cancelled": "Cancelled"
+  "status_cancelled": "Cancelled",
+
+  "wishlistTabActive": "Active",
+  "wishlistTabBought": "Bought",
+  "addItemTooltip": "Add item",
+  "wishlistEmptyActive": "The list is empty.\nTap + to add your first item.",
+  "wishlistEmptyBought": "Bought items will appear here.",
+  "wishlistLoadError": "Failed to load the list.",
+
+  "actionReserve": "I'll buy it",
+  "actionBuyNow": "Buy now",
+  "actionCancel": "Cancel item",
+  "actionUnreserve": "Back to queue",
+  "actionDelete": "Delete",
+
+  "deleteItemTitle": "Delete item?",
+  "deleteItemMessage": "\"{title}\" will be deleted permanently.",
+  "@deleteItemMessage": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+
+  "cancel": "Cancel",
+  "themeColor": "Theme color",
+  "selected": "Selected",
+
+  "newItemTitle": "New item",
+  "editItemTitle": "Edit item",
+  "fieldTitle": "Title",
+  "fieldPriceRub": "Price (₽)",
+  "fieldPriceHint": "For example: 30000",
+  "fieldPriority": "Priority",
+  "fieldCategory": "Category",
+  "categoryNone": "No category",
+  "fieldNotes": "Notes",
+  "fieldUrl": "Link",
+  "save": "Save",
+  "validationTitleEmpty": "Title must not be empty",
+  "saveFailed": "Failed to save",
+  "loadError": "Error",
+  "categoriesLoadError": "Failed to load categories",
+
+  "language": "Language",
+  "languageSystem": "Sistem",
+  "languageEnglish": "English",
+  "languageRussian": "Russian",
+  "languageSpanishMx": "Spanish (Mexico)",
+  "languageChineseSimplified": "Chinese (Simplified)"
 }

@@ -6,7 +6,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
+import 'app_localizations_es.dart';
 import 'app_localizations_ru.dart';
+import 'app_localizations_zh.dart';
 
 // ignore_for_file: type=lint
 
@@ -95,7 +97,11 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
+    Locale('es'),
+    Locale('es', 'MX'),
     Locale('ru'),
+    Locale('zh'),
+    Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'),
   ];
 
   /// No description provided for @appTitle.
@@ -199,6 +205,228 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cancelled'**
   String get status_cancelled;
+
+  /// No description provided for @wishlistTabActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get wishlistTabActive;
+
+  /// No description provided for @wishlistTabBought.
+  ///
+  /// In en, this message translates to:
+  /// **'Bought'**
+  String get wishlistTabBought;
+
+  /// No description provided for @addItemTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Add item'**
+  String get addItemTooltip;
+
+  /// No description provided for @wishlistEmptyActive.
+  ///
+  /// In en, this message translates to:
+  /// **'The list is empty.\nTap + to add your first item.'**
+  String get wishlistEmptyActive;
+
+  /// No description provided for @wishlistEmptyBought.
+  ///
+  /// In en, this message translates to:
+  /// **'Bought items will appear here.'**
+  String get wishlistEmptyBought;
+
+  /// No description provided for @wishlistLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load the list.'**
+  String get wishlistLoadError;
+
+  /// No description provided for @actionReserve.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'ll buy it'**
+  String get actionReserve;
+
+  /// No description provided for @actionBuyNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy now'**
+  String get actionBuyNow;
+
+  /// No description provided for @actionCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel item'**
+  String get actionCancel;
+
+  /// No description provided for @actionUnreserve.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to queue'**
+  String get actionUnreserve;
+
+  /// No description provided for @actionDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get actionDelete;
+
+  /// No description provided for @deleteItemTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete item?'**
+  String get deleteItemTitle;
+
+  /// No description provided for @deleteItemMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'\"{title}\" will be deleted permanently.'**
+  String deleteItemMessage(String title);
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @themeColor.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme color'**
+  String get themeColor;
+
+  /// No description provided for @selected.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get selected;
+
+  /// No description provided for @newItemTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New item'**
+  String get newItemTitle;
+
+  /// No description provided for @editItemTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit item'**
+  String get editItemTitle;
+
+  /// No description provided for @fieldTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get fieldTitle;
+
+  /// No description provided for @fieldPriceRub.
+  ///
+  /// In en, this message translates to:
+  /// **'Price (₽)'**
+  String get fieldPriceRub;
+
+  /// No description provided for @fieldPriceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: 30000'**
+  String get fieldPriceHint;
+
+  /// No description provided for @fieldPriority.
+  ///
+  /// In en, this message translates to:
+  /// **'Priority'**
+  String get fieldPriority;
+
+  /// No description provided for @fieldCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get fieldCategory;
+
+  /// No description provided for @categoryNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No category'**
+  String get categoryNone;
+
+  /// No description provided for @fieldNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get fieldNotes;
+
+  /// No description provided for @fieldUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Link'**
+  String get fieldUrl;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @validationTitleEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Title must not be empty'**
+  String get validationTitleEmpty;
+
+  /// No description provided for @saveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to save'**
+  String get saveFailed;
+
+  /// No description provided for @loadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get loadError;
+
+  /// No description provided for @categoriesLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load categories'**
+  String get categoriesLoadError;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @languageSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'Sistem'**
+  String get languageSystem;
+
+  /// No description provided for @languageEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get languageEnglish;
+
+  /// No description provided for @languageRussian.
+  ///
+  /// In en, this message translates to:
+  /// **'Russian'**
+  String get languageRussian;
+
+  /// No description provided for @languageSpanishMx.
+  ///
+  /// In en, this message translates to:
+  /// **'Spanish (Mexico)'**
+  String get languageSpanishMx;
+
+  /// No description provided for @languageChineseSimplified.
+  ///
+  /// In en, this message translates to:
+  /// **'Chinese (Simplified)'**
+  String get languageChineseSimplified;
 }
 
 class _AppLocalizationsDelegate
@@ -212,19 +440,47 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en', 'ru'].contains(locale.languageCode);
+      <String>['en', 'es', 'ru', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+  // Lookup logic when language+script codes are specified.
+  switch (locale.languageCode) {
+    case 'zh':
+      {
+        switch (locale.scriptCode) {
+          case 'Hans':
+            return AppLocalizationsZhHans();
+        }
+        break;
+      }
+  }
+
+  // Lookup logic when language+country codes are specified.
+  switch (locale.languageCode) {
+    case 'es':
+      {
+        switch (locale.countryCode) {
+          case 'MX':
+            return AppLocalizationsEsMx();
+        }
+        break;
+      }
+  }
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en':
       return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
     case 'ru':
       return AppLocalizationsRu();
+    case 'zh':
+      return AppLocalizationsZh();
   }
 
   throw FlutterError(

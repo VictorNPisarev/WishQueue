@@ -7,12 +7,10 @@ import '../data/wish_item_repository_provider.dart';
 import '../domain/wish_item_priority.dart';
 import 'wish_item_form_state.dart';
 
-/// Контроллер формы создания/редактирования позиции.
-///
-/// Параметр (`.family`): `null` — создание, иначе id существующей позиции.
-final wishItemFormControllerProvider =
-    AsyncNotifierProvider.autoDispose.family<WishItemFormController,
-      WishItemFormState, String?>(WishItemFormController.new);
+final wishItemFormControllerProvider = AsyncNotifierProvider.autoDispose
+    .family<WishItemFormController, WishItemFormState, String?>(
+      WishItemFormController.new,
+    );
 
 class WishItemFormController
     extends AutoDisposeFamilyAsyncNotifier<WishItemFormState, String?> {
@@ -36,7 +34,7 @@ class WishItemFormController
   }
 
   void setTitle(String value) =>
-      _update((s) => s.copyWith(title: value, clearValidationError: true));
+      _update((s) => s.copyWith(title: value, validationTitleEmpty: false));
 
   void setEstimatedMinor(int? value) =>
       _update((s) => s.copyWith(estimatedMinor: value));
@@ -51,25 +49,18 @@ class WishItemFormController
 
   void setUrl(String? value) => _update((s) => s.copyWith(url: value));
 
-  /// Сохраняет позицию.
-  ///
-  /// - ошибка валидации → `validationError` в состоянии;
-  /// - ошибка БД → `AsyncError`;
-  /// - успех → `AsyncData` с `isSaving = false`.
   Future<void> save(String? itemId) async {
     final current = state.valueOrNull;
     if (current == null) return;
 
     final trimmedTitle = current.title.trim();
     if (trimmedTitle.isEmpty) {
-      state = AsyncData(
-        current.copyWith(validationError: 'Название не может быть пустым'),
-      );
+      state = AsyncData(current.copyWith(validationTitleEmpty: true));
       return;
     }
 
     state = AsyncData(
-      current.copyWith(isSaving: true, clearValidationError: true),
+      current.copyWith(isSaving: true, validationTitleEmpty: false),
     );
 
     try {
@@ -108,7 +99,6 @@ class WishItemFormController
     state = AsyncData(transform(current));
   }
 
-  /// Обрезает пробелы; пустую строку приводит к null.
   String? _normalize(String? s) {
     if (s == null) return null;
     final t = s.trim();

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/db/database.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/wish_item_status.dart';
 import 'wish_item_tile.dart';
 
@@ -10,9 +11,6 @@ import 'wish_item_tile.dart';
 ///
 /// Свайп влево (planned → reserved) — «куплю».
 /// Свайп вправо (reserved → planned) — «вернуть в очередь».
-///
-/// Свайпы не удаляют элемент — [Dismissible.confirmDismiss] всегда
-/// возвращает `false`, а действие выполняется через колбэки.
 class SwipeableWishItemTile extends StatelessWidget {
   const SwipeableWishItemTile({
     super.key,
@@ -31,6 +29,7 @@ class SwipeableWishItemTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final status = WishItemStatus.fromDb(item.status);
 
     final direction = switch (status) {
@@ -46,13 +45,13 @@ class SwipeableWishItemTile extends StatelessWidget {
       background: _buildBackground(
         color: Colors.orange,
         icon: Icons.undo,
-        text: 'В очередь',
+        text: l10n.actionUnreserve,
         alignment: Alignment.centerLeft,
       ),
       secondaryBackground: _buildBackground(
         color: Colors.blue,
         icon: Icons.bookmark_add,
-        text: 'Куплю',
+        text: l10n.actionReserve,
         alignment: Alignment.centerRight,
       ),
       confirmDismiss: (dir) async {
@@ -61,8 +60,6 @@ class SwipeableWishItemTile extends StatelessWidget {
         } else if (dir == DismissDirection.endToStart) {
           onReserve();
         }
-        // Всегда false: не удаляем элемент, drift сам перерисует список
-        // после изменения статуса.
         return false;
       },
       child: WishItemTile(item: item, onTap: onTap, onLongPress: onLongPress),

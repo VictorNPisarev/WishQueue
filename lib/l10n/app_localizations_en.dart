@@ -58,4 +58,118 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get status_cancelled => 'Cancelled';
+
+  @override
+  String get wishlistTabActive => 'Active';
+
+  @override
+  String get wishlistTabBought => 'Bought';
+
+  @override
+  String get addItemTooltip => 'Add item';
+
+  @override
+  String get wishlistEmptyActive =>
+      'The list is empty.\nTap + to add your first item.';
+
+  @override
+  String get wishlistEmptyBought => 'Bought items will appear here.';
+
+  @override
+  String get wishlistLoadError => 'Failed to load the list.';
+
+  @override
+  String get actionReserve => 'I\'ll buy it';
+
+  @override
+  String get actionBuyNow => 'Buy now';
+
+  @override
+  String get actionCancel => 'Cancel item';
+
+  @override
+  String get actionUnreserve => 'Back to queue';
+
+  @override
+  String get actionDelete => 'Delete';
+
+  @override
+  String get deleteItemTitle => 'Delete item?';
+
+  @override
+  String deleteItemMessage(String title) {
+    return '\"$title\" will be deleted permanently.';
+  }
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get themeColor => 'Theme color';
+
+  @override
+  String get selected => 'Selected';
+
+  @override
+  String get newItemTitle => 'New item';
+
+  @override
+  String get editItemTitle => 'Edit item';
+
+  @override
+  String get fieldTitle => 'Title';
+
+  @override
+  String get fieldPriceRub => 'Price (₽)';
+
+  @override
+  String get fieldPriceHint => 'For example: 30000';
+
+  @override
+  String get fieldPriority => 'Priority';
+
+  @override
+  String get fieldCategory => 'Category';
+
+  @override
+  String get categoryNone => 'No category';
+
+  @override
+  String get fieldNotes => 'Notes';
+
+  @override
+  String get fieldUrl => 'Link';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get validationTitleEmpty => 'Title must not be empty';
+
+  @override
+  String get saveFailed => 'Failed to save';
+
+  @override
+  String get loadError => 'Error';
+
+  @override
+  String get categoriesLoadError => 'Failed to load categories';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get languageSystem => 'Sistem';
+
+  @override
+  String get languageEnglish => 'English';
+
+  @override
+  String get languageRussian => 'Russian';
+
+  @override
+  String get languageSpanishMx => 'Spanish (Mexico)';
+
+  @override
+  String get languageChineseSimplified => 'Chinese (Simplified)';
 }

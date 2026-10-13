@@ -2,7 +2,6 @@
 
 import '../domain/wish_item_priority.dart';
 
-/// Состояние формы создания/редактирования позиции.
 class WishItemFormState {
   final String title;
   final int? estimatedMinor;
@@ -11,8 +10,8 @@ class WishItemFormState {
   final String? notes;
   final String? url;
   final bool isSaving;
-  final String? validationError;
   final bool isSaved;
+  final bool validationTitleEmpty;
 
   const WishItemFormState({
     required this.title,
@@ -22,11 +21,10 @@ class WishItemFormState {
     required this.notes,
     required this.url,
     this.isSaving = false,
-    this.validationError,
     this.isSaved = false,
+    this.validationTitleEmpty = false,
   });
 
-  /// Пустое состояние для режима создания.
   factory WishItemFormState.initial() => const WishItemFormState(
     title: '',
     estimatedMinor: null,
@@ -44,9 +42,8 @@ class WishItemFormState {
     String? notes,
     String? url,
     bool? isSaving,
-    String? validationError,
-    bool clearValidationError = false,
     bool? isSaved,
+    bool? validationTitleEmpty,
   }) {
     return WishItemFormState(
       title: title ?? this.title,
@@ -56,10 +53,8 @@ class WishItemFormState {
       notes: notes ?? this.notes,
       url: url ?? this.url,
       isSaving: isSaving ?? this.isSaving,
-      validationError: clearValidationError
-          ? null
-          : (validationError ?? this.validationError),
       isSaved: isSaved ?? this.isSaved,
+      validationTitleEmpty: validationTitleEmpty ?? this.validationTitleEmpty,
     );
   }
 }

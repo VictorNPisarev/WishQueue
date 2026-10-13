@@ -16,5 +16,55 @@
   "status_planned": "Запланирован",
   "status_reserved": "Зарезервирован",
   "status_bought": "Куплен",
-  "status_cancelled": "Отменен"
+  "status_cancelled": "Отменен",
+
+  "wishlistTabActive": "Активные",
+  "wishlistTabBought": "Куплено",
+  "addItemTooltip": "Добавить позицию",
+  "wishlistEmptyActive": "Список пуст.\nНажмите +, чтобы добавить первую позицию.",
+  "wishlistEmptyBought": "Здесь появятся купленные позиции.",
+  "wishlistLoadError": "Не удалось загрузить список.",
+
+  "actionReserve": "Куплю",
+  "actionBuyNow": "Купить сейчас",
+  "actionCancel": "Отменить",
+  "actionUnreserve": "В очередь",
+  "actionDelete": "Удалить",
+
+  "deleteItemTitle": "Удалить позицию?",
+  "deleteItemMessage": "«{title}» будет удалена без возможности восстановления.",
+  "@deleteItemMessage": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+
+  "cancel": "Отмена",
+  "themeColor": "Цвет темы",
+  "selected": "Выбрано",
+
+  "newItemTitle": "Новая позиция",
+  "editItemTitle": "Редактирование",
+  "fieldTitle": "Название",
+  "fieldPriceRub": "Цена (₽)",
+  "fieldPriceHint": "Например: 30000",
+  "fieldPriority": "Приоритет",
+  "fieldCategory": "Категория",
+  "categoryNone": "Без категории",
+  "fieldNotes": "Заметки",
+  "fieldUrl": "Ссылка",
+  "save": "Сохранить",
+  "validationTitleEmpty": "Название не может быть пустым",
+  "saveFailed": "Не удалось сохранить",
+  "loadError": "Ошибка",
+  "categoriesLoadError": "Не удалось загрузить категории",
+
+  "language": "Язык",
+  "languageSystem": "Системный",
+  "languageEnglish": "Английский",
+  "languageRussian": "Русский",
+  "languageSpanishMx": "Испанский (Мексика)",
+  "languageChineseSimplified": "Китайский (Упрощенный)"
 }
