@@ -149,6 +149,11 @@ class _Trailing extends StatelessWidget {
         ? (item.actualPrice ?? item.estimatedPrice)
         : item.estimatedPrice;
     if (price == null) return '—';
+
+    // Localizations.localeOf вернёт, например:
+    //   Locale('ru') → 'ru'
+    //   Locale('es', 'MX') → 'es_MX'
+    //   Locale('zh', scriptCode: 'Hans') → 'zh_Hans'
     final locale = Localizations.localeOf(context).toString();
     return price.format(locale: locale);
   }

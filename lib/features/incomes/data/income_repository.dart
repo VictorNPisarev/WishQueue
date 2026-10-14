@@ -55,6 +55,7 @@ class IncomeRepository {
     required DateTime plannedDate,
     String currency = 'RUB',
     String? notes,
+    int? workedMinutes,
   }) async {
     _validateTitle(title);
     _validateAmount(amountMinor);
@@ -72,6 +73,7 @@ class IncomeRepository {
       notes: Value(notes),
       createdAt: now,
       updatedAt: now,
+      workedMinutes: Value.absentIfNull(workedMinutes),
     );
 
     await _db.into(_db.incomes).insert(companion);
@@ -89,6 +91,7 @@ class IncomeRepository {
     DateTime? plannedDate,
     String? currency,
     String? notes,
+    int? workedMinutes,
   }) async {
     if (title != null) _validateTitle(title);
     if (amountMinor != null) _validateAmount(amountMinor);
@@ -102,6 +105,7 @@ class IncomeRepository {
       currency: Value.absentIfNull(currency),
       notes: Value.absentIfNull(notes),
       updatedAt: Value(DateTime.now().toUtc()),
+      workedMinutes: Value.absentIfNull(workedMinutes),
     );
 
     final affected = await (_db.update(

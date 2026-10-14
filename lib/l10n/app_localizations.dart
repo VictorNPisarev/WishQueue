@@ -403,30 +403,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sistem'**
   String get languageSystem;
-
-  /// No description provided for @languageEnglish.
-  ///
-  /// In en, this message translates to:
-  /// **'English'**
-  String get languageEnglish;
-
-  /// No description provided for @languageRussian.
-  ///
-  /// In en, this message translates to:
-  /// **'Russian'**
-  String get languageRussian;
-
-  /// No description provided for @languageSpanishMx.
-  ///
-  /// In en, this message translates to:
-  /// **'Spanish (Mexico)'**
-  String get languageSpanishMx;
-
-  /// No description provided for @languageChineseSimplified.
-  ///
-  /// In en, this message translates to:
-  /// **'Chinese (Simplified)'**
-  String get languageChineseSimplified;
 }
 
 class _AppLocalizationsDelegate

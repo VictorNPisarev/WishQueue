@@ -1,16 +1,15 @@
 // lib/core/utils/money.dart
+
 import 'package:intl/intl.dart';
 
 class Money {
-  final int minorUnits; // копейки
-  final String currency; // 'RUB', 'USD'
+  final int minorUnits;
+  final String currency;
 
   const Money(this.minorUnits, this.currency);
 
   const Money.zero(this.currency) : minorUnits = 0;
 
-  /// Парсит пользовательский ввод в минорные единицы.
-  /// Поддерживает "1 234,56", "1234.56", "1234".
   static Money parse(String input, String currency) {
     final cleaned = input
         .replaceAll('\u00A0', '')
@@ -27,15 +26,42 @@ class Money {
     return Money(minor, currency);
   }
 
-  /// Форматирует в строку. Локаль по умолчанию — ru_RU.
+  /// Форматирует в строку.
+  ///
+  /// Локаль влияет на разделители тысяч и десятичный разделитель
+  /// (запятая или точка), но **не** на символ валюты: он всегда
+  /// берётся из [currency].
   String format({String? locale}) {
+    final normalizedLocale = _normalizeLocale(locale);
     final fmt = NumberFormat.currency(
-      locale: locale ?? 'ru_RU',
+      locale: normalizedLocale,
       name: currency,
       symbol: _symbolFor(currency),
       decimalDigits: 2,
     );
     return fmt.format(minorUnits / 100);
+  }
+
+  /// Приводит локаль к формату, который понимает `intl`.
+  ///
+  /// - `zh_Hans` → `zh` (скрипт отбрасываем, intl не поддерживает).
+  /// - `es_MX` → `es_MX` (страна поддерживается).
+  /// - `ru` → `ru`.
+  static String _normalizeLocale(String? locale) {
+    if (locale == null || locale.isEmpty) return 'ru_RU';
+
+    // Формат Flutter: 'zh_Hans', 'es_MX', 'ru'.
+    final parts = locale.split('_');
+    if (parts.length == 1) return parts[0];
+
+    // Если второй сегмент — 4 буквы (скрипт, напр. 'Hans'), отбрасываем.
+    final second = parts[1];
+    if (second.length == 4) {
+      return parts[0];
+    }
+
+    // Иначе — это страна (2 буквы), оставляем как есть.
+    return locale;
   }
 
   static String _symbolFor(String currency) {

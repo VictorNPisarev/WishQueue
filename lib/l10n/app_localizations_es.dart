@@ -160,18 +160,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get languageSystem => 'Sistema';
-
-  @override
-  String get languageEnglish => 'Inglés';
-
-  @override
-  String get languageRussian => 'Ruso';
-
-  @override
-  String get languageSpanishMx => 'Español (México)';
-
-  @override
-  String get languageChineseSimplified => 'Chino simplificado';
 }
 
 /// The translations for Spanish Castilian, as used in Mexico (`es_MX`).
@@ -330,16 +318,4 @@ class AppLocalizationsEsMx extends AppLocalizationsEs {
 
   @override
   String get languageSystem => 'Sistema';
-
-  @override
-  String get languageEnglish => 'Inglés';
-
-  @override
-  String get languageRussian => 'Ruso';
-
-  @override
-  String get languageSpanishMx => 'Español (México)';
-
-  @override
-  String get languageChineseSimplified => 'Chino simplificado';
 }

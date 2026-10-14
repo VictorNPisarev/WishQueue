@@ -155,22 +155,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get categoriesLoadError => '无法加载类别';
 
   @override
-  String get language => 'Language';
+  String get language => '语言';
 
   @override
-  String get languageSystem => 'Sistem';
-
-  @override
-  String get languageEnglish => 'English';
-
-  @override
-  String get languageRussian => 'Russian';
-
-  @override
-  String get languageSpanishMx => 'Spanish (Mexico)';
-
-  @override
-  String get languageChineseSimplified => 'Chinese (Simplified)';
+  String get languageSystem => '系统';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -328,16 +316,4 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get languageSystem => '系统';
-
-  @override
-  String get languageEnglish => '英语';
-
-  @override
-  String get languageRussian => '俄语';
-
-  @override
-  String get languageSpanishMx => '西班牙语（墨西哥）';
-
-  @override
-  String get languageChineseSimplified => '中文（简体）';
 }
