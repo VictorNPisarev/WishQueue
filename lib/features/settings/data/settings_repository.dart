@@ -5,6 +5,8 @@ import 'package:drift/drift.dart';
 import '../../../core/db/database.dart';
 import '../domain/theme_seed.dart';
 
+import '../domain/app_locale.dart';
+
 /// Ключи настроек в таблице `settings`.
 ///
 /// Строковые константы, чтобы не опечататься при чтении/записи.
@@ -12,6 +14,7 @@ class SettingKeys {
   SettingKeys._();
 
   static const themeSeed = 'theme_seed';
+  static const locale = 'locale';
 }
 
 /// Репозиторий настроек приложения.
@@ -50,5 +53,14 @@ class SettingsRepository {
   /// Записывает выбранный seed темы.
   Future<void> setThemeSeed(ThemeSeed seed) async {
     await setValue(SettingKeys.themeSeed, seed.key);
+  }
+
+  Future<AppLocale> getAppLocale() async {
+    final raw = await getValue(SettingKeys.locale);
+    return AppLocale.fromKey(raw);
+  }
+
+  Future<void> setAppLocale(AppLocale locale) async {
+    await setValue(SettingKeys.locale, locale.key);
   }
 }

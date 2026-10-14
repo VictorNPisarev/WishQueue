@@ -1,0 +1,103 @@
+{
+	"@@locale": "es",
+	"appTitle": "WishQueue",
+	"wishlistTitle": "Lista de deseos",
+	"addItem": "Agregar artículo",
+	"addIncome": "Agregar ingreso",
+	"distribute": "Distribuir",
+	"cat_auto": "Auto",
+	"cat_home": "Hogar",
+	"cat_tools": "Herramientas",
+	"cat_other": "Otros",
+	"priority_urgent": "Urgente",
+	"priority_high": "Alta",
+	"priority_normal": "Normal",
+	"priority_someday": "Algún día",
+	"status_planned": "Planificado",
+	"status_reserved": "Reservado",
+	"status_bought": "Comprado",
+	"status_cancelled": "Cancelado",
+
+	"wishlistTabActive": "Activos",
+	"wishlistTabBought": "Comprados",
+	"addItemTooltip": "Agregar artículo",
+	"wishlistEmptyActive": "La lista está vacía.\nToca + para agregar tu primer artículo.",
+	"wishlistEmptyBought": "Los artículos comprados aparecerán aquí.",
+	"wishlistLoadError": "No se pudo cargar la lista.",
+
+	"actionReserve": "Lo compraré",
+	"actionBuyNow": "Comprar ahora",
+	"actionCancel": "Cancelar artículo",
+	"actionUnreserve": "Volver a la cola",
+	"actionDelete": "Eliminar",
+
+	"deleteItemTitle": "¿Eliminar artículo?",
+	"deleteItemMessage": "«{title}» se eliminará permanentemente.",
+	"@deleteItemMessage": {
+		"placeholders": {
+		"title": {
+			"type": "String"
+		}
+		}
+	},
+
+	"cancel": "Cancelar",
+	"themeColor": "Color del tema",
+	"selected": "Seleccionado",
+
+	"newItemTitle": "Nuevo artículo",
+	"editItemTitle": "Editar artículo",
+	"fieldTitle": "Título",
+	"fieldPriceRub": "Precio (₽)",
+	"fieldPriceHint": "Por ejemplo: 30000",
+	"fieldPriority": "Prioridad",
+	"fieldCategory": "Categoría",
+	"categoryNone": "Sin categoría",
+	"fieldNotes": "Notas",
+	"fieldUrl": "Enlace",
+	"save": "Guardar",
+	"validationTitleEmpty": "El título no puede estar vacío",
+	"saveFailed": "Error al guardar",
+	"loadError": "Error",
+	"categoriesLoadError": "No se pudieron cargar las categorías",
+
+	"language": "Idioma",
+	"languageSystem": "Sistema",
+
+	"newIncomeTitle": "Nuevo ingreso",
+	"editIncomeTitle": "Editar ingreso",
+	"fieldAmount": "Monto",
+	"fieldAmountHint": "Por ejemplo: 80000",
+	"fieldDate": "Fecha",
+	"fieldWorkedHours": "Horas trabajadas",
+	"fieldWorkedHoursHint": "Por ejemplo: 120",
+	"validationAmountInvalid": "Ingresa un monto positivo",
+
+	"incomesTitle": "Ingresos",
+	"addIncomeTooltip": "Agregar ingreso",
+	"incomesEmpty": "Aún no hay ingresos.\nToca + para agregar el primero.",
+	"incomesLoadError": "No se pudieron cargar los ingresos.",
+	"actionMarkReceived": "Marcar como recibido",
+	"incomesLoadFailed": "Error al cargar",
+	"deleteIncomeTitle": "¿Eliminar ingreso?",
+	"deleteIncomeMessage": "«{title}» se eliminará permanentemente.",
+	"statusLabelPlanned": "Esperado",
+	"statusLabelReceived": "Recibido",
+	"statusLabelCancelled": "Cancelado",
+
+	"balanceCurrent": "Actual",
+	"balancePlanned": "Planificado",
+	"balanceSpent": "Gastado",
+	"balanceReserved": "Reservado",
+	"balanceRemaining": "Libre",
+	"balancePositionCount": "{count, plural, =1 {1 artículo} other {{count} artículos}}",
+	"@balancePositionCount": {
+		"placeholders": {
+			"count": {
+				"type": "int"
+			}
+		}
+	},
+	"fieldReceivedAt": "Fecha de recepción",
+	"fieldBoughtAt": "Fecha de compra"
+}

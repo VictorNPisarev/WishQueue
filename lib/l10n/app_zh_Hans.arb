@@ -1,0 +1,103 @@
+{
+	"@@locale": "zh_Hans",
+	"appTitle": "WishQueue",
+	"wishlistTitle": "愿望清单",
+	"addItem": "添加项目",
+	"addIncome": "添加收入",
+	"distribute": "分配",
+	"cat_auto": "汽车",
+	"cat_home": "家居",
+	"cat_tools": "工具",
+	"cat_other": "其他",
+	"priority_urgent": "紧急",
+	"priority_high": "高",
+	"priority_normal": "普通",
+	"priority_someday": "将来",
+	"status_planned": "已计划",
+	"status_reserved": "已预留",
+	"status_bought": "已购买",
+	"status_cancelled": "已取消",
+
+	"wishlistTabActive": "活跃",
+	"wishlistTabBought": "已购买",
+	"addItemTooltip": "添加项目",
+	"wishlistEmptyActive": "列表为空。\n点击 + 添加第一个项目。",
+	"wishlistEmptyBought": "已购买的项目将显示在此处。",
+	"wishlistLoadError": "无法加载列表。",
+
+	"actionReserve": "我会买",
+	"actionBuyNow": "立即购买",
+	"actionCancel": "取消项目",
+	"actionUnreserve": "返回队列",
+	"actionDelete": "删除",
+
+	"deleteItemTitle": "删除项目？",
+	"deleteItemMessage": "「{title}」将被永久删除。",
+	"@deleteItemMessage": {
+		"placeholders": {
+		"title": {
+			"type": "String"
+		}
+		}
+	},
+
+	"cancel": "取消",
+	"themeColor": "主题颜色",
+	"selected": "已选择",
+
+	"newItemTitle": "新项目",
+	"editItemTitle": "编辑项目",
+	"fieldTitle": "标题",
+	"fieldPriceRub": "价格 (₽)",
+	"fieldPriceHint": "例如：30000",
+	"fieldPriority": "优先级",
+	"fieldCategory": "类别",
+	"categoryNone": "无类别",
+	"fieldNotes": "备注",
+	"fieldUrl": "链接",
+	"save": "保存",
+	"validationTitleEmpty": "标题不能为空",
+	"saveFailed": "保存失败",
+	"loadError": "错误",
+	"categoriesLoadError": "无法加载类别",
+
+	"language": "语言",
+	"languageSystem": "系统",
+
+	"newIncomeTitle": "新收入",
+	"editIncomeTitle": "编辑收入",
+	"fieldAmount": "金额",
+	"fieldAmountHint": "例如：80000",
+	"fieldDate": "日期",
+	"fieldWorkedHours": "工作时数",
+	"fieldWorkedHoursHint": "例如：120",
+	"validationAmountInvalid": "请输入正数金额",
+
+	"incomesTitle": "收入",
+	"addIncomeTooltip": "添加收入",
+	"incomesEmpty": "暂无收入。\n点击 + 添加第一笔。",
+	"incomesLoadError": "无法加载收入。",
+	"actionMarkReceived": "标记为已收到",
+	"incomesLoadFailed": "加载失败",
+	"deleteIncomeTitle": "删除收入？",
+	"deleteIncomeMessage": "「{title}」将被永久删除。",
+	"statusLabelPlanned": "预期",
+	"statusLabelReceived": "已收到",
+	"statusLabelCancelled": "已取消",
+
+	"balanceCurrent": "当前",
+	"balancePlanned": "计划",
+	"balanceSpent": "已花费",
+	"balanceReserved": "已预留",
+	"balanceRemaining": "剩余",
+	"balancePositionCount": "{count, plural, other {{count} 项}}",
+	"@balancePositionCount": {
+		"placeholders": {
+			"count": {
+				"type": "int"
+			}
+		}
+	},
+	"fieldReceivedAt": "收到日期",
+	"fieldBoughtAt": "购买日期"
+}

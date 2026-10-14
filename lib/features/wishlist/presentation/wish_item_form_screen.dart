@@ -7,10 +7,12 @@ import 'package:go_router/go_router.dart';
 import '../../../core/db/database.dart';
 import '../../../core/errors/app_exception.dart';
 import '../../../core/utils/money.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../categories/presentation/categories_provider.dart';
 import '../domain/wish_item_priority.dart';
 import 'wish_item_form_controller.dart';
 import 'wish_item_form_state.dart';
+import '../domain/wish_item_status.dart';
 
 /// Экран создания/редактирования позиции.
 ///
@@ -52,6 +54,7 @@ class _WishItemFormScreenState extends ConsumerState<WishItemFormScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final provider = wishItemFormControllerProvider(widget.itemId);
 
     // Синхронизация полей с загруженным состоянием — один раз.
@@ -73,15 +76,16 @@ class _WishItemFormScreenState extends ConsumerState<WishItemFormScreen> {
     ref.listen(provider, (prev, next) {
       final state = next.valueOrNull;
       if (state?.isSaved == true) {
-        context.go('/wishlist');
+        //context.go('/wishlist');
+        context.pop();
         return;
       }
       if (next is AsyncError) {
         final err = next.error;
-        final msg = err is AppException ? err.message : 'Не удалось сохранить';
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(msg)));
+        final msg = err is AppException ? err.message : l10n.saveFailed;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(msg), backgroundColor: Colors.red),
+        );
       }
     });
 
@@ -89,19 +93,27 @@ class _WishItemFormScreenState extends ConsumerState<WishItemFormScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.itemId == null ? 'Новая позиция' : 'Редактирование'),
+        title: Text(
+          widget.itemId == null ? l10n.newItemTitle : l10n.editItemTitle,
+        ),
       ),
       body: stateAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, _) => Center(child: Text('Ошибка: $e')),
-        data: (state) => _buildForm(state, provider),
+        error: (e, _) => Center(child: Text('${l10n.loadError}: $e')),
+        data: (state) => _buildForm(state, provider, l10n),
       ),
     );
   }
 
   Widget _buildForm(
     WishItemFormState state,
-    AutoDisposeFamilyAsyncNotifierProvider<WishItemFormController, WishItemFormState, String?> provider,
+    AutoDisposeFamilyAsyncNotifierProvider<
+      WishItemFormController,
+      WishItemFormState,
+      String?
+    >
+    provider,
+    AppLocalizations l10n,
   ) {
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -109,8 +121,10 @@ class _WishItemFormScreenState extends ConsumerState<WishItemFormScreen> {
         TextFormField(
           controller: _titleController,
           decoration: InputDecoration(
-            labelText: 'Название',
-            errorText: state.validationError,
+            labelText: l10n.fieldTitle,
+            errorText: state.validationTitleEmpty
+                ? l10n.validationTitleEmpty
+                : null,
           ),
           onChanged: (v) => ref.read(provider.notifier).setTitle(v),
         ),
@@ -119,9 +133,9 @@ class _WishItemFormScreenState extends ConsumerState<WishItemFormScreen> {
         TextFormField(
           controller: _priceController,
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
-          decoration: const InputDecoration(
-            labelText: 'Цена (₽)',
-            hintText: 'Например: 30000',
+          decoration: InputDecoration(
+            labelText: l10n.fieldPriceRub,
+            hintText: l10n.fieldPriceHint,
           ),
           onChanged: (v) {
             final parsed = Money.parse(v, 'RUB');
@@ -134,18 +148,18 @@ class _WishItemFormScreenState extends ConsumerState<WishItemFormScreen> {
         ),
         const SizedBox(height: 16),
 
-        _buildPriorityDropdown(state, provider),
+        _buildPriorityDropdown(state, provider, l10n),
 
         const SizedBox(height: 16),
 
-        _buildCategoryDropdown(state, provider),
+        _buildCategoryDropdown(state, provider, l10n),
 
         const SizedBox(height: 16),
 
         TextFormField(
           controller: _notesController,
           maxLines: 3,
-          decoration: const InputDecoration(labelText: 'Заметки'),
+          decoration: InputDecoration(labelText: l10n.fieldNotes),
           onChanged: (v) => ref.read(provider.notifier).setNotes(v),
         ),
         const SizedBox(height: 16),
@@ -153,9 +167,17 @@ class _WishItemFormScreenState extends ConsumerState<WishItemFormScreen> {
         TextFormField(
           controller: _urlController,
           keyboardType: TextInputType.url,
-          decoration: const InputDecoration(labelText: 'Ссылка'),
+          decoration: InputDecoration(labelText: l10n.fieldUrl),
           onChanged: (v) => ref.read(provider.notifier).setUrl(v),
         ),
+        const SizedBox(height: 24),
+
+        // Поле «Дата покупки» — только для bought.
+        if (state.status == WishItemStatus.bought.dbValue) ...[
+          const SizedBox(height: 16),
+          _buildBoughtAtField(context, state, provider, l10n),
+        ],
+
         const SizedBox(height: 24),
 
         FilledButton(
@@ -168,7 +190,7 @@ class _WishItemFormScreenState extends ConsumerState<WishItemFormScreen> {
                   width: 20,
                   child: CircularProgressIndicator(strokeWidth: 2),
                 )
-              : const Text('Сохранить'),
+              : Text(l10n.save),
         ),
       ],
     );
@@ -176,14 +198,23 @@ class _WishItemFormScreenState extends ConsumerState<WishItemFormScreen> {
 
   Widget _buildPriorityDropdown(
     WishItemFormState state,
-    AutoDisposeFamilyAsyncNotifierProvider<WishItemFormController, WishItemFormState, String?> provider,
+    AutoDisposeFamilyAsyncNotifierProvider<
+      WishItemFormController,
+      WishItemFormState,
+      String?
+    >
+    provider,
+    AppLocalizations l10n,
   ) {
     return DropdownButtonFormField<WishItemPriority>(
       initialValue: state.priority,
-      decoration: const InputDecoration(labelText: 'Приоритет'),
+      decoration: InputDecoration(labelText: l10n.fieldPriority),
       items: WishItemPriority.values
           .map(
-            (p) => DropdownMenuItem(value: p, child: Text(_priorityLabel(p))),
+            (p) => DropdownMenuItem(
+              value: p,
+              child: Text(_priorityLabel(p, l10n)),
+            ),
           )
           .toList(),
       onChanged: (v) {
@@ -194,25 +225,31 @@ class _WishItemFormScreenState extends ConsumerState<WishItemFormScreen> {
 
   Widget _buildCategoryDropdown(
     WishItemFormState state,
-    AutoDisposeFamilyAsyncNotifierProvider<WishItemFormController, WishItemFormState, String?> provider,
+    AutoDisposeFamilyAsyncNotifierProvider<
+      WishItemFormController,
+      WishItemFormState,
+      String?
+    >
+    provider,
+    AppLocalizations l10n,
   ) {
     final categoriesAsync = ref.watch(categoriesProvider);
 
     return categoriesAsync.when(
       loading: () => const LinearProgressIndicator(),
-      error: (_, __) => const Text('Не удалось загрузить категории'),
+      error: (_, __) => Text(l10n.categoriesLoadError),
       data: (categories) => DropdownButtonFormField<String?>(
         initialValue: state.categoryId,
-        decoration: const InputDecoration(labelText: 'Категория'),
+        decoration: InputDecoration(labelText: l10n.fieldCategory),
         items: [
-          const DropdownMenuItem<String?>(
+          DropdownMenuItem<String?>(
             value: null,
-            child: Text('Без категории'),
+            child: Text(l10n.categoryNone),
           ),
           ...categories.map(
             (c) => DropdownMenuItem<String?>(
               value: c.id,
-              child: Text(_categoryLabel(c)),
+              child: Text(_categoryLabel(c, l10n)),
             ),
           ),
         ],
@@ -221,12 +258,81 @@ class _WishItemFormScreenState extends ConsumerState<WishItemFormScreen> {
     );
   }
 
-  String _priorityLabel(WishItemPriority p) => switch (p) {
-    WishItemPriority.urgent => 'Срочно',
-    WishItemPriority.high => 'Важно',
-    WishItemPriority.normal => 'Обычно',
-    WishItemPriority.someday => 'Когда-нибудь',
-  };
+  String _priorityLabel(WishItemPriority p, AppLocalizations l10n) =>
+      switch (p) {
+        WishItemPriority.urgent => l10n.priority_urgent,
+        WishItemPriority.high => l10n.priority_high,
+        WishItemPriority.normal => l10n.priority_normal,
+        WishItemPriority.someday => l10n.priority_someday,
+      };
 
-  String _categoryLabel(Category c) => c.nameCustom ?? c.nameKey ?? c.id;
+  String _categoryLabel(Category c, AppLocalizations l10n) {
+    if (c.isSystem && c.nameKey != null) {
+      return _translateCategoryKey(c.nameKey!, l10n);
+    }
+    return c.nameCustom ?? c.id;
+  }
+
+  String _translateCategoryKey(String key, AppLocalizations l10n) {
+    switch (key) {
+      case 'cat_auto':
+        return l10n.cat_auto;
+      case 'cat_home':
+        return l10n.cat_home;
+      case 'cat_tools':
+        return l10n.cat_tools;
+      case 'cat_other':
+        return l10n.cat_other;
+      default:
+        return key;
+    }
+  }
+
+  Widget _buildBoughtAtField(
+    BuildContext context,
+    WishItemFormState state,
+    AutoDisposeFamilyAsyncNotifierProvider<
+      WishItemFormController,
+      WishItemFormState,
+      String?
+    >
+    provider,
+    AppLocalizations l10n,
+  ) {
+    final date = state.boughtAt ?? DateTime.now();
+    final formatted = MaterialLocalizations.of(context).formatCompactDate(date);
+
+    return InkWell(
+      onTap: () => _pickBoughtAt(context, provider, date),
+      borderRadius: BorderRadius.circular(4),
+      child: InputDecorator(
+        decoration: InputDecoration(
+          labelText: l10n.fieldBoughtAt,
+          suffixIcon: const Icon(Icons.calendar_today),
+          border: const OutlineInputBorder(),
+        ),
+        child: Text(formatted, style: const TextStyle(fontSize: 16)),
+      ),
+    );
+  }
+
+  Future<void> _pickBoughtAt(
+    BuildContext context,
+    AutoDisposeFamilyAsyncNotifierProvider<
+      WishItemFormController,
+      WishItemFormState,
+      String?
+    >
+    provider,
+    DateTime initial,
+  ) async {
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: initial,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (picked == null) return;
+    ref.read(provider.notifier).setBoughtAt(picked);
+  }
 }

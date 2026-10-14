@@ -2,7 +2,6 @@
 
 import '../domain/wish_item_priority.dart';
 
-/// Состояние формы создания/редактирования позиции.
 class WishItemFormState {
   final String title;
   final int? estimatedMinor;
@@ -10,9 +9,17 @@ class WishItemFormState {
   final String? categoryId;
   final String? notes;
   final String? url;
+
+  /// Текущий статус (не редактируется в форме, но нужен UI для поля
+  /// «Дата покупки»).
+  final String status;
+
+  /// Фактическая дата покупки. Редактируется только при status == bought.
+  final DateTime? boughtAt;
+
   final bool isSaving;
-  final String? validationError;
   final bool isSaved;
+  final bool validationTitleEmpty;
 
   const WishItemFormState({
     required this.title,
@@ -21,12 +28,13 @@ class WishItemFormState {
     required this.categoryId,
     required this.notes,
     required this.url,
+    required this.status,
+    required this.boughtAt,
     this.isSaving = false,
-    this.validationError,
     this.isSaved = false,
+    this.validationTitleEmpty = false,
   });
 
-  /// Пустое состояние для режима создания.
   factory WishItemFormState.initial() => const WishItemFormState(
     title: '',
     estimatedMinor: null,
@@ -34,6 +42,8 @@ class WishItemFormState {
     categoryId: null,
     notes: null,
     url: null,
+    status: 'planned',
+    boughtAt: null,
   );
 
   WishItemFormState copyWith({
@@ -43,10 +53,11 @@ class WishItemFormState {
     String? categoryId,
     String? notes,
     String? url,
+    String? status,
+    DateTime? boughtAt,
     bool? isSaving,
-    String? validationError,
-    bool clearValidationError = false,
     bool? isSaved,
+    bool? validationTitleEmpty,
   }) {
     return WishItemFormState(
       title: title ?? this.title,
@@ -55,11 +66,11 @@ class WishItemFormState {
       categoryId: categoryId ?? this.categoryId,
       notes: notes ?? this.notes,
       url: url ?? this.url,
+      status: status ?? this.status,
+      boughtAt: boughtAt ?? this.boughtAt,
       isSaving: isSaving ?? this.isSaving,
-      validationError: clearValidationError
-          ? null
-          : (validationError ?? this.validationError),
       isSaved: isSaved ?? this.isSaved,
+      validationTitleEmpty: validationTitleEmpty ?? this.validationTitleEmpty,
     );
   }
 }

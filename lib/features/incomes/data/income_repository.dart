@@ -55,6 +55,7 @@ class IncomeRepository {
     required DateTime plannedDate,
     String currency = 'RUB',
     String? notes,
+    int? workedMinutes,
   }) async {
     _validateTitle(title);
     _validateAmount(amountMinor);
@@ -72,16 +73,17 @@ class IncomeRepository {
       notes: Value(notes),
       createdAt: now,
       updatedAt: now,
+      workedMinutes: Value.absentIfNull(workedMinutes),
     );
 
     await _db.into(_db.incomes).insert(companion);
     return getById(id);
   }
 
-  /// Обновляет поступление.
+/// Обновляет поступление.
   ///
-  /// Не позволяет менять `status` и `receivedAt` напрямую — для этого
-  /// есть [markReceived] и [cancel].
+  /// Не позволяет менять `status` напрямую — для этого есть [markReceived]
+  /// и [cancel]. Но [receivedAt] можно править, если статус уже `received`.
   Future<Income> update({
     required String id,
     String? title,
@@ -89,18 +91,26 @@ class IncomeRepository {
     DateTime? plannedDate,
     String? currency,
     String? notes,
+    int? workedMinutes,
+    DateTime? receivedAt,
   }) async {
     if (title != null) _validateTitle(title);
     if (amountMinor != null) _validateAmount(amountMinor);
 
+    final existing = await getById(id);
+    final isReceived = existing.status == IncomeStatus.received.dbValue;
+
     final companion = IncomesCompanion(
       title: Value.absentIfNull(title),
       amountMinor: Value.absentIfNull(amountMinor),
-      plannedDate: plannedDate == null
-          ? const Value.absent()
-          : Value(plannedDate.toUtc()),
+      plannedDate: Value.absentIfNull(plannedDate?.toUtc()),
       currency: Value.absentIfNull(currency),
       notes: Value.absentIfNull(notes),
+      workedMinutes: Value.absentIfNull(workedMinutes),
+      // receivedAt меняем только если статус received.
+      receivedAt: isReceived
+          ? Value.absentIfNull(receivedAt?.toUtc())
+          : const Value.absent(),
       updatedAt: Value(DateTime.now().toUtc()),
     );
 
@@ -114,7 +124,6 @@ class IncomeRepository {
 
     return getById(id);
   }
-
   /// Отмечает поступление как полученное.
   ///
   /// [receivedAt] — фактическая дата получения. Если не передана — «сейчас».

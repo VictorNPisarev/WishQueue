@@ -39,6 +39,11 @@ class Incomes extends Table {
   DateTimeColumn get updatedAt => dateTime()();
   DateTimeColumn get deletedAt => dateTime().nullable()();
 
+  // Отработанные минуты (опционально). Например, 480 = 8 часов.
+  /// Если задано — можно вычислить стоимость часа:
+  /// amountMinor / (workedMinutes / 60).
+  IntColumn get workedMinutes => integer().nullable()();
+
   @override
   Set<Column> get primaryKey => {id};
 }

@@ -27,7 +27,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase(super.e);
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -39,6 +39,10 @@ class AppDatabase extends _$AppDatabase {
       // v1 → v2: добавлена таблица settings.
       if (from < 2) {
         await m.createTable(settings);
+      }
+
+      if (from < 3) {
+        await m.addColumn(incomes, incomes.workedMinutes);
       }
     },
     beforeOpen: (details) async {

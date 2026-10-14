@@ -58,4 +58,201 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get status_cancelled => 'Отменен';
+
+  @override
+  String get wishlistTabActive => 'Активные';
+
+  @override
+  String get wishlistTabBought => 'Куплено';
+
+  @override
+  String get addItemTooltip => 'Добавить позицию';
+
+  @override
+  String get wishlistEmptyActive =>
+      'Список пуст.\nНажмите +, чтобы добавить первую позицию.';
+
+  @override
+  String get wishlistEmptyBought => 'Здесь появятся купленные позиции.';
+
+  @override
+  String get wishlistLoadError => 'Не удалось загрузить список.';
+
+  @override
+  String get actionReserve => 'Куплю';
+
+  @override
+  String get actionBuyNow => 'Купить сейчас';
+
+  @override
+  String get actionCancel => 'Отменить';
+
+  @override
+  String get actionUnreserve => 'В очередь';
+
+  @override
+  String get actionDelete => 'Удалить';
+
+  @override
+  String get deleteItemTitle => 'Удалить позицию?';
+
+  @override
+  String deleteItemMessage(String title) {
+    return '«$title» будет удалена без возможности восстановления.';
+  }
+
+  @override
+  String get cancel => 'Отмена';
+
+  @override
+  String get themeColor => 'Цвет темы';
+
+  @override
+  String get selected => 'Выбрано';
+
+  @override
+  String get newItemTitle => 'Новая позиция';
+
+  @override
+  String get editItemTitle => 'Редактирование';
+
+  @override
+  String get fieldTitle => 'Название';
+
+  @override
+  String get fieldPriceRub => 'Цена (₽)';
+
+  @override
+  String get fieldPriceHint => 'Например: 30000';
+
+  @override
+  String get fieldPriority => 'Приоритет';
+
+  @override
+  String get fieldCategory => 'Категория';
+
+  @override
+  String get categoryNone => 'Без категории';
+
+  @override
+  String get fieldNotes => 'Заметки';
+
+  @override
+  String get fieldUrl => 'Ссылка';
+
+  @override
+  String get save => 'Сохранить';
+
+  @override
+  String get validationTitleEmpty => 'Название не может быть пустым';
+
+  @override
+  String get saveFailed => 'Не удалось сохранить';
+
+  @override
+  String get loadError => 'Ошибка';
+
+  @override
+  String get categoriesLoadError => 'Не удалось загрузить категории';
+
+  @override
+  String get language => 'Язык';
+
+  @override
+  String get languageSystem => 'Системный';
+
+  @override
+  String get newIncomeTitle => 'Новое поступление';
+
+  @override
+  String get editIncomeTitle => 'Редактирование поступления';
+
+  @override
+  String get fieldAmount => 'Сумма';
+
+  @override
+  String get fieldAmountHint => 'Например: 80000';
+
+  @override
+  String get fieldDate => 'Дата';
+
+  @override
+  String get fieldWorkedHours => 'Отработанные часы';
+
+  @override
+  String get fieldWorkedHoursHint => 'Например: 120';
+
+  @override
+  String get validationAmountInvalid => 'Укажите положительную сумму';
+
+  @override
+  String get incomesTitle => 'Поступления';
+
+  @override
+  String get addIncomeTooltip => 'Добавить поступление';
+
+  @override
+  String get incomesEmpty =>
+      'Поступлений пока нет.\nНажмите +, чтобы добавить первое.';
+
+  @override
+  String get incomesLoadError => 'Не удалось загрузить поступления.';
+
+  @override
+  String get actionMarkReceived => 'Отметить полученным';
+
+  @override
+  String get incomesLoadFailed => 'Не удалось загрузить';
+
+  @override
+  String get deleteIncomeTitle => 'Удалить поступление?';
+
+  @override
+  String deleteIncomeMessage(String title) {
+    return '«$title» будет удалено без возможности восстановления.';
+  }
+
+  @override
+  String get statusLabelPlanned => 'Ожидается';
+
+  @override
+  String get statusLabelReceived => 'Получено';
+
+  @override
+  String get statusLabelCancelled => 'Отменено';
+
+  @override
+  String get balanceCurrent => 'Текущее';
+
+  @override
+  String get balancePlanned => 'Запланировано';
+
+  @override
+  String get balanceSpent => 'Потрачено';
+
+  @override
+  String get balanceReserved => 'В резерве';
+
+  @override
+  String get balanceRemaining => 'Свободно';
+
+  @override
+  String balancePositionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count позиции',
+      many: '$count позиций',
+      few: '$count позиции',
+      one: '1 позиция',
+      zero: 'нет позиций',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldReceivedAt => 'Дата получения';
+
+  @override
+  String get fieldBoughtAt => 'Дата покупки';
 }
