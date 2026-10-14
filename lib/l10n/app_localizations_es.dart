@@ -160,6 +160,98 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get languageSystem => 'Sistema';
+
+  @override
+  String get newIncomeTitle => 'Nuevo ingreso';
+
+  @override
+  String get editIncomeTitle => 'Editar ingreso';
+
+  @override
+  String get fieldAmount => 'Monto';
+
+  @override
+  String get fieldAmountHint => 'Por ejemplo: 80000';
+
+  @override
+  String get fieldDate => 'Fecha';
+
+  @override
+  String get fieldWorkedHours => 'Horas trabajadas';
+
+  @override
+  String get fieldWorkedHoursHint => 'Por ejemplo: 120';
+
+  @override
+  String get validationAmountInvalid => 'Ingresa un monto positivo';
+
+  @override
+  String get incomesTitle => 'Ingresos';
+
+  @override
+  String get addIncomeTooltip => 'Agregar ingreso';
+
+  @override
+  String get incomesEmpty =>
+      'Aún no hay ingresos.\nToca + para agregar el primero.';
+
+  @override
+  String get incomesLoadError => 'No se pudieron cargar los ingresos.';
+
+  @override
+  String get actionMarkReceived => 'Marcar como recibido';
+
+  @override
+  String get incomesLoadFailed => 'Error al cargar';
+
+  @override
+  String get deleteIncomeTitle => '¿Eliminar ingreso?';
+
+  @override
+  String deleteIncomeMessage(String title) {
+    return '«$title» se eliminará permanentemente.';
+  }
+
+  @override
+  String get statusLabelPlanned => 'Esperado';
+
+  @override
+  String get statusLabelReceived => 'Recibido';
+
+  @override
+  String get statusLabelCancelled => 'Cancelado';
+
+  @override
+  String get balanceCurrent => 'Actual';
+
+  @override
+  String get balancePlanned => 'Planificado';
+
+  @override
+  String get balanceSpent => 'Gastado';
+
+  @override
+  String get balanceReserved => 'Reservado';
+
+  @override
+  String get balanceRemaining => 'Libre';
+
+  @override
+  String balancePositionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count artículos',
+      one: '1 artículo',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldReceivedAt => 'Fecha de recepción';
+
+  @override
+  String get fieldBoughtAt => 'Fecha de compra';
 }
 
 /// The translations for Spanish Castilian, as used in Mexico (`es_MX`).
@@ -318,4 +410,96 @@ class AppLocalizationsEsMx extends AppLocalizationsEs {
 
   @override
   String get languageSystem => 'Sistema';
+
+  @override
+  String get newIncomeTitle => 'Nuevo ingreso';
+
+  @override
+  String get editIncomeTitle => 'Editar ingreso';
+
+  @override
+  String get fieldAmount => 'Monto';
+
+  @override
+  String get fieldAmountHint => 'Por ejemplo: 80000';
+
+  @override
+  String get fieldDate => 'Fecha';
+
+  @override
+  String get fieldWorkedHours => 'Horas trabajadas';
+
+  @override
+  String get fieldWorkedHoursHint => 'Por ejemplo: 120';
+
+  @override
+  String get validationAmountInvalid => 'Ingresa un monto positivo';
+
+  @override
+  String get incomesTitle => 'Ingresos';
+
+  @override
+  String get addIncomeTooltip => 'Agregar ingreso';
+
+  @override
+  String get incomesEmpty =>
+      'Aún no hay ingresos.\nToca + para agregar el primero.';
+
+  @override
+  String get incomesLoadError => 'No se pudieron cargar los ingresos.';
+
+  @override
+  String get actionMarkReceived => 'Marcar como recibido';
+
+  @override
+  String get incomesLoadFailed => 'Error al cargar';
+
+  @override
+  String get deleteIncomeTitle => '¿Eliminar ingreso?';
+
+  @override
+  String deleteIncomeMessage(String title) {
+    return '«$title» se eliminará permanentemente.';
+  }
+
+  @override
+  String get statusLabelPlanned => 'Esperado';
+
+  @override
+  String get statusLabelReceived => 'Recibido';
+
+  @override
+  String get statusLabelCancelled => 'Cancelado';
+
+  @override
+  String get balanceCurrent => 'Actual';
+
+  @override
+  String get balancePlanned => 'Planificado';
+
+  @override
+  String get balanceSpent => 'Gastado';
+
+  @override
+  String get balanceReserved => 'Reservado';
+
+  @override
+  String get balanceRemaining => 'Libre';
+
+  @override
+  String balancePositionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count artículos',
+      one: '1 artículo',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldReceivedAt => 'Fecha de recepción';
+
+  @override
+  String get fieldBoughtAt => 'Fecha de compra';
 }

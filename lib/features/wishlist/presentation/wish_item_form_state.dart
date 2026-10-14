@@ -9,6 +9,14 @@ class WishItemFormState {
   final String? categoryId;
   final String? notes;
   final String? url;
+
+  /// Текущий статус (не редактируется в форме, но нужен UI для поля
+  /// «Дата покупки»).
+  final String status;
+
+  /// Фактическая дата покупки. Редактируется только при status == bought.
+  final DateTime? boughtAt;
+
   final bool isSaving;
   final bool isSaved;
   final bool validationTitleEmpty;
@@ -20,6 +28,8 @@ class WishItemFormState {
     required this.categoryId,
     required this.notes,
     required this.url,
+    required this.status,
+    required this.boughtAt,
     this.isSaving = false,
     this.isSaved = false,
     this.validationTitleEmpty = false,
@@ -32,6 +42,8 @@ class WishItemFormState {
     categoryId: null,
     notes: null,
     url: null,
+    status: 'planned',
+    boughtAt: null,
   );
 
   WishItemFormState copyWith({
@@ -41,6 +53,8 @@ class WishItemFormState {
     String? categoryId,
     String? notes,
     String? url,
+    String? status,
+    DateTime? boughtAt,
     bool? isSaving,
     bool? isSaved,
     bool? validationTitleEmpty,
@@ -52,6 +66,8 @@ class WishItemFormState {
       categoryId: categoryId ?? this.categoryId,
       notes: notes ?? this.notes,
       url: url ?? this.url,
+      status: status ?? this.status,
+      boughtAt: boughtAt ?? this.boughtAt,
       isSaving: isSaving ?? this.isSaving,
       isSaved: isSaved ?? this.isSaved,
       validationTitleEmpty: validationTitleEmpty ?? this.validationTitleEmpty,

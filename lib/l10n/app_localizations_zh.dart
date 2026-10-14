@@ -159,6 +159,96 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get languageSystem => '系统';
+
+  @override
+  String get newIncomeTitle => '新收入';
+
+  @override
+  String get editIncomeTitle => '编辑收入';
+
+  @override
+  String get fieldAmount => '金额';
+
+  @override
+  String get fieldAmountHint => '例如：80000';
+
+  @override
+  String get fieldDate => '日期';
+
+  @override
+  String get fieldWorkedHours => '工作时数';
+
+  @override
+  String get fieldWorkedHoursHint => '例如：120';
+
+  @override
+  String get validationAmountInvalid => '请输入正数金额';
+
+  @override
+  String get incomesTitle => '收入';
+
+  @override
+  String get addIncomeTooltip => '添加收入';
+
+  @override
+  String get incomesEmpty => '暂无收入。\n点击 + 添加第一笔。';
+
+  @override
+  String get incomesLoadError => '无法加载收入。';
+
+  @override
+  String get actionMarkReceived => '标记为已收到';
+
+  @override
+  String get incomesLoadFailed => '加载失败';
+
+  @override
+  String get deleteIncomeTitle => '删除收入？';
+
+  @override
+  String deleteIncomeMessage(String title) {
+    return '「$title」将被永久删除。';
+  }
+
+  @override
+  String get statusLabelPlanned => '预期';
+
+  @override
+  String get statusLabelReceived => '已收到';
+
+  @override
+  String get statusLabelCancelled => '已取消';
+
+  @override
+  String get balanceCurrent => '当前';
+
+  @override
+  String get balancePlanned => '计划';
+
+  @override
+  String get balanceSpent => '已花费';
+
+  @override
+  String get balanceReserved => '已预留';
+
+  @override
+  String get balanceRemaining => '剩余';
+
+  @override
+  String balancePositionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 项',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldReceivedAt => '收到日期';
+
+  @override
+  String get fieldBoughtAt => '购买日期';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -316,4 +406,94 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get languageSystem => '系统';
+
+  @override
+  String get newIncomeTitle => '新收入';
+
+  @override
+  String get editIncomeTitle => '编辑收入';
+
+  @override
+  String get fieldAmount => '金额';
+
+  @override
+  String get fieldAmountHint => '例如：80000';
+
+  @override
+  String get fieldDate => '日期';
+
+  @override
+  String get fieldWorkedHours => '工作时数';
+
+  @override
+  String get fieldWorkedHoursHint => '例如：120';
+
+  @override
+  String get validationAmountInvalid => '请输入正数金额';
+
+  @override
+  String get incomesTitle => '收入';
+
+  @override
+  String get addIncomeTooltip => '添加收入';
+
+  @override
+  String get incomesEmpty => '暂无收入。\n点击 + 添加第一笔。';
+
+  @override
+  String get incomesLoadError => '无法加载收入。';
+
+  @override
+  String get actionMarkReceived => '标记为已收到';
+
+  @override
+  String get incomesLoadFailed => '加载失败';
+
+  @override
+  String get deleteIncomeTitle => '删除收入？';
+
+  @override
+  String deleteIncomeMessage(String title) {
+    return '「$title」将被永久删除。';
+  }
+
+  @override
+  String get statusLabelPlanned => '预期';
+
+  @override
+  String get statusLabelReceived => '已收到';
+
+  @override
+  String get statusLabelCancelled => '已取消';
+
+  @override
+  String get balanceCurrent => '当前';
+
+  @override
+  String get balancePlanned => '计划';
+
+  @override
+  String get balanceSpent => '已花费';
+
+  @override
+  String get balanceReserved => '已预留';
+
+  @override
+  String get balanceRemaining => '剩余';
+
+  @override
+  String balancePositionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 项',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldReceivedAt => '收到日期';
+
+  @override
+  String get fieldBoughtAt => '购买日期';
 }

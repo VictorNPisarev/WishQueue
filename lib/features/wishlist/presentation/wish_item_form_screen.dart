@@ -12,6 +12,7 @@ import '../../categories/presentation/categories_provider.dart';
 import '../domain/wish_item_priority.dart';
 import 'wish_item_form_controller.dart';
 import 'wish_item_form_state.dart';
+import '../domain/wish_item_status.dart';
 
 /// Экран создания/редактирования позиции.
 ///
@@ -75,7 +76,8 @@ class _WishItemFormScreenState extends ConsumerState<WishItemFormScreen> {
     ref.listen(provider, (prev, next) {
       final state = next.valueOrNull;
       if (state?.isSaved == true) {
-        context.go('/wishlist');
+        //context.go('/wishlist');
+        context.pop();
         return;
       }
       if (next is AsyncError) {
@@ -168,6 +170,14 @@ class _WishItemFormScreenState extends ConsumerState<WishItemFormScreen> {
           decoration: InputDecoration(labelText: l10n.fieldUrl),
           onChanged: (v) => ref.read(provider.notifier).setUrl(v),
         ),
+        const SizedBox(height: 24),
+
+        // Поле «Дата покупки» — только для bought.
+        if (state.status == WishItemStatus.bought.dbValue) ...[
+          const SizedBox(height: 16),
+          _buildBoughtAtField(context, state, provider, l10n),
+        ],
+
         const SizedBox(height: 24),
 
         FilledButton(
@@ -276,5 +286,53 @@ class _WishItemFormScreenState extends ConsumerState<WishItemFormScreen> {
       default:
         return key;
     }
+  }
+
+  Widget _buildBoughtAtField(
+    BuildContext context,
+    WishItemFormState state,
+    AutoDisposeFamilyAsyncNotifierProvider<
+      WishItemFormController,
+      WishItemFormState,
+      String?
+    >
+    provider,
+    AppLocalizations l10n,
+  ) {
+    final date = state.boughtAt ?? DateTime.now();
+    final formatted = MaterialLocalizations.of(context).formatCompactDate(date);
+
+    return InkWell(
+      onTap: () => _pickBoughtAt(context, provider, date),
+      borderRadius: BorderRadius.circular(4),
+      child: InputDecorator(
+        decoration: InputDecoration(
+          labelText: l10n.fieldBoughtAt,
+          suffixIcon: const Icon(Icons.calendar_today),
+          border: const OutlineInputBorder(),
+        ),
+        child: Text(formatted, style: const TextStyle(fontSize: 16)),
+      ),
+    );
+  }
+
+  Future<void> _pickBoughtAt(
+    BuildContext context,
+    AutoDisposeFamilyAsyncNotifierProvider<
+      WishItemFormController,
+      WishItemFormState,
+      String?
+    >
+    provider,
+    DateTime initial,
+  ) async {
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: initial,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (picked == null) return;
+    ref.read(provider.notifier).setBoughtAt(picked);
   }
 }

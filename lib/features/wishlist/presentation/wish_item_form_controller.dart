@@ -30,6 +30,8 @@ class WishItemFormController
       categoryId: item.categoryId,
       notes: item.notes,
       url: item.url,
+      status: item.status,
+      boughtAt: item.boughtAt,
     );
   }
 
@@ -48,6 +50,9 @@ class WishItemFormController
   void setNotes(String? value) => _update((s) => s.copyWith(notes: value));
 
   void setUrl(String? value) => _update((s) => s.copyWith(url: value));
+
+  void setBoughtAt(DateTime? value) =>
+      _update((s) => s.copyWith(boughtAt: value));
 
   Future<void> save(String? itemId) async {
     final current = state.valueOrNull;
@@ -84,6 +89,7 @@ class WishItemFormController
           categoryId: current.categoryId,
           notes: _normalize(current.notes),
           url: _normalize(current.url),
+          boughtAt: current.boughtAt,
         );
       }
 

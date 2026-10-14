@@ -1,66 +1,103 @@
 {
-  "@@locale": "ru",
-  "appTitle": "Очередь желаемого",
-  "wishlistTitle": "Список к покупке",
-  "addItem": "Добавить товар",
-  "addIncome": "Добавить приход",
-  "distribute": "Распределить",
-  "cat_auto": "Авто",
-  "cat_home": "Дом",
-  "cat_tools": "Инструменты",
-  "cat_other": "Другое",
-  "priority_urgent": "Неотложный",
-  "priority_high": "Высокий",
-  "priority_normal": "Обычный",
-  "priority_someday": "Когда-нибудь",
-  "status_planned": "Запланирован",
-  "status_reserved": "Зарезервирован",
-  "status_bought": "Куплен",
-  "status_cancelled": "Отменен",
+	"@@locale": "ru",
+	"appTitle": "Очередь желаемого",
+	"wishlistTitle": "Список к покупке",
+	"addItem": "Добавить товар",
+	"addIncome": "Добавить приход",
+	"distribute": "Распределить",
+	"cat_auto": "Авто",
+	"cat_home": "Дом",
+	"cat_tools": "Инструменты",
+	"cat_other": "Другое",
+	"priority_urgent": "Неотложный",
+	"priority_high": "Высокий",
+	"priority_normal": "Обычный",
+	"priority_someday": "Когда-нибудь",
+	"status_planned": "Запланирован",
+	"status_reserved": "Зарезервирован",
+	"status_bought": "Куплен",
+	"status_cancelled": "Отменен",
 
-  "wishlistTabActive": "Активные",
-  "wishlistTabBought": "Куплено",
-  "addItemTooltip": "Добавить позицию",
-  "wishlistEmptyActive": "Список пуст.\nНажмите +, чтобы добавить первую позицию.",
-  "wishlistEmptyBought": "Здесь появятся купленные позиции.",
-  "wishlistLoadError": "Не удалось загрузить список.",
+	"wishlistTabActive": "Активные",
+	"wishlistTabBought": "Куплено",
+	"addItemTooltip": "Добавить позицию",
+	"wishlistEmptyActive": "Список пуст.\nНажмите +, чтобы добавить первую позицию.",
+	"wishlistEmptyBought": "Здесь появятся купленные позиции.",
+	"wishlistLoadError": "Не удалось загрузить список.",
 
-  "actionReserve": "Куплю",
-  "actionBuyNow": "Купить сейчас",
-  "actionCancel": "Отменить",
-  "actionUnreserve": "В очередь",
-  "actionDelete": "Удалить",
+	"actionReserve": "Куплю",
+	"actionBuyNow": "Купить сейчас",
+	"actionCancel": "Отменить",
+	"actionUnreserve": "В очередь",
+	"actionDelete": "Удалить",
 
-  "deleteItemTitle": "Удалить позицию?",
-  "deleteItemMessage": "«{title}» будет удалена без возможности восстановления.",
-  "@deleteItemMessage": {
-    "placeholders": {
-      "title": {
-        "type": "String"
-      }
-    }
-  },
+	"deleteItemTitle": "Удалить позицию?",
+	"deleteItemMessage": "«{title}» будет удалена без возможности восстановления.",
+	"@deleteItemMessage": {
+		"placeholders": {
+		"title": {
+			"type": "String"
+		}
+		}
+	},
 
-  "cancel": "Отмена",
-  "themeColor": "Цвет темы",
-  "selected": "Выбрано",
+	"cancel": "Отмена",
+	"themeColor": "Цвет темы",
+	"selected": "Выбрано",
 
-  "newItemTitle": "Новая позиция",
-  "editItemTitle": "Редактирование",
-  "fieldTitle": "Название",
-  "fieldPriceRub": "Цена (₽)",
-  "fieldPriceHint": "Например: 30000",
-  "fieldPriority": "Приоритет",
-  "fieldCategory": "Категория",
-  "categoryNone": "Без категории",
-  "fieldNotes": "Заметки",
-  "fieldUrl": "Ссылка",
-  "save": "Сохранить",
-  "validationTitleEmpty": "Название не может быть пустым",
-  "saveFailed": "Не удалось сохранить",
-  "loadError": "Ошибка",
-  "categoriesLoadError": "Не удалось загрузить категории",
+	"newItemTitle": "Новая позиция",
+	"editItemTitle": "Редактирование",
+	"fieldTitle": "Название",
+	"fieldPriceRub": "Цена (₽)",
+	"fieldPriceHint": "Например: 30000",
+	"fieldPriority": "Приоритет",
+	"fieldCategory": "Категория",
+	"categoryNone": "Без категории",
+	"fieldNotes": "Заметки",
+	"fieldUrl": "Ссылка",
+	"save": "Сохранить",
+	"validationTitleEmpty": "Название не может быть пустым",
+	"saveFailed": "Не удалось сохранить",
+	"loadError": "Ошибка",
+	"categoriesLoadError": "Не удалось загрузить категории",
 
-  "language": "Язык",
-  "languageSystem": "Системный"
+	"language": "Язык",
+	"languageSystem": "Системный",
+
+	"newIncomeTitle": "Новое поступление",
+	"editIncomeTitle": "Редактирование поступления",
+	"fieldAmount": "Сумма",
+	"fieldAmountHint": "Например: 80000",
+	"fieldDate": "Дата",
+	"fieldWorkedHours": "Отработанные часы",
+	"fieldWorkedHoursHint": "Например: 120",
+	"validationAmountInvalid": "Укажите положительную сумму",
+
+	"incomesTitle": "Поступления",
+	"addIncomeTooltip": "Добавить поступление",
+	"incomesEmpty": "Поступлений пока нет.\nНажмите +, чтобы добавить первое.",
+	"incomesLoadError": "Не удалось загрузить поступления.",
+	"actionMarkReceived": "Отметить полученным",
+	"incomesLoadFailed": "Не удалось загрузить",
+	"deleteIncomeTitle": "Удалить поступление?",
+	"deleteIncomeMessage": "«{title}» будет удалено без возможности восстановления.",
+	"statusLabelPlanned": "Ожидается",
+	"statusLabelReceived": "Получено",
+	"statusLabelCancelled": "Отменено",
+
+	"balanceCurrent": "Текущее",
+	"balancePlanned": "Запланировано",
+	"balanceSpent": "Потрачено",
+	"balanceReserved": "В резерве",
+	"balanceRemaining": "Свободно",
+	"balancePositionCount": "{count, plural, =0 {нет позиций} =1 {1 позиция} few {{count} позиции} many {{count} позиций} other {{count} позиции}}",
+	"@balancePositionCount": {
+		"placeholders": {
+			"count": {
+				"type": "int"
+			}
+		}
+	},
+	"fieldReceivedAt": "Дата получения",
+	"fieldBoughtAt": "Дата покупки"
 }

@@ -160,4 +160,96 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get languageSystem => 'Sistem';
+
+  @override
+  String get newIncomeTitle => 'New income';
+
+  @override
+  String get editIncomeTitle => 'Edit income';
+
+  @override
+  String get fieldAmount => 'Amount';
+
+  @override
+  String get fieldAmountHint => 'For example: 80000';
+
+  @override
+  String get fieldDate => 'Date';
+
+  @override
+  String get fieldWorkedHours => 'Worked hours';
+
+  @override
+  String get fieldWorkedHoursHint => 'For example: 120';
+
+  @override
+  String get validationAmountInvalid => 'Enter a positive amount';
+
+  @override
+  String get incomesTitle => 'Incomes';
+
+  @override
+  String get addIncomeTooltip => 'Add income';
+
+  @override
+  String get incomesEmpty => 'No incomes yet.\nTap + to add your first one.';
+
+  @override
+  String get incomesLoadError => 'Failed to load incomes.';
+
+  @override
+  String get actionMarkReceived => 'Mark as received';
+
+  @override
+  String get incomesLoadFailed => 'Failed to load';
+
+  @override
+  String get deleteIncomeTitle => 'Delete income?';
+
+  @override
+  String deleteIncomeMessage(String title) {
+    return '\"$title\" will be deleted permanently.';
+  }
+
+  @override
+  String get statusLabelPlanned => 'Expected';
+
+  @override
+  String get statusLabelReceived => 'Received';
+
+  @override
+  String get statusLabelCancelled => 'Cancelled';
+
+  @override
+  String get balanceCurrent => 'Current';
+
+  @override
+  String get balancePlanned => 'Planned';
+
+  @override
+  String get balanceSpent => 'Spent';
+
+  @override
+  String get balanceReserved => 'Reserved';
+
+  @override
+  String get balanceRemaining => 'Free';
+
+  @override
+  String balancePositionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count items',
+      one: '1 item',
+      zero: 'no items',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldReceivedAt => 'Date received';
+
+  @override
+  String get fieldBoughtAt => 'Date purchased';
 }

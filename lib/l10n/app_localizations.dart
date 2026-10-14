@@ -403,6 +403,168 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sistem'**
   String get languageSystem;
+
+  /// No description provided for @newIncomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New income'**
+  String get newIncomeTitle;
+
+  /// No description provided for @editIncomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit income'**
+  String get editIncomeTitle;
+
+  /// No description provided for @fieldAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get fieldAmount;
+
+  /// No description provided for @fieldAmountHint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: 80000'**
+  String get fieldAmountHint;
+
+  /// No description provided for @fieldDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get fieldDate;
+
+  /// No description provided for @fieldWorkedHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Worked hours'**
+  String get fieldWorkedHours;
+
+  /// No description provided for @fieldWorkedHoursHint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: 120'**
+  String get fieldWorkedHoursHint;
+
+  /// No description provided for @validationAmountInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a positive amount'**
+  String get validationAmountInvalid;
+
+  /// No description provided for @incomesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Incomes'**
+  String get incomesTitle;
+
+  /// No description provided for @addIncomeTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Add income'**
+  String get addIncomeTooltip;
+
+  /// No description provided for @incomesEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No incomes yet.\nTap + to add your first one.'**
+  String get incomesEmpty;
+
+  /// No description provided for @incomesLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load incomes.'**
+  String get incomesLoadError;
+
+  /// No description provided for @actionMarkReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as received'**
+  String get actionMarkReceived;
+
+  /// No description provided for @incomesLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load'**
+  String get incomesLoadFailed;
+
+  /// No description provided for @deleteIncomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete income?'**
+  String get deleteIncomeTitle;
+
+  /// No description provided for @deleteIncomeMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'\"{title}\" will be deleted permanently.'**
+  String deleteIncomeMessage(String title);
+
+  /// No description provided for @statusLabelPlanned.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected'**
+  String get statusLabelPlanned;
+
+  /// No description provided for @statusLabelReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Received'**
+  String get statusLabelReceived;
+
+  /// No description provided for @statusLabelCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get statusLabelCancelled;
+
+  /// No description provided for @balanceCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'Current'**
+  String get balanceCurrent;
+
+  /// No description provided for @balancePlanned.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned'**
+  String get balancePlanned;
+
+  /// No description provided for @balanceSpent.
+  ///
+  /// In en, this message translates to:
+  /// **'Spent'**
+  String get balanceSpent;
+
+  /// No description provided for @balanceReserved.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserved'**
+  String get balanceReserved;
+
+  /// No description provided for @balanceRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get balanceRemaining;
+
+  /// No description provided for @balancePositionCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0 {no items} =1 {1 item} other {{count} items}}'**
+  String balancePositionCount(int count);
+
+  /// No description provided for @fieldReceivedAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Date received'**
+  String get fieldReceivedAt;
+
+  /// No description provided for @fieldBoughtAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Date purchased'**
+  String get fieldBoughtAt;
 }
 
 class _AppLocalizationsDelegate

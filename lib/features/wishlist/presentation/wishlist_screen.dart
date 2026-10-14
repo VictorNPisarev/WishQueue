@@ -13,6 +13,7 @@ import '../domain/wish_item_status.dart';
 import 'widgets/swipeable_wish_item_tile.dart';
 import 'wishlist_provider.dart';
 import '../../settings/presentation/widgets/locale_picker_sheet.dart';
+import 'widgets/balance_panel.dart';
 
 class WishlistScreen extends ConsumerStatefulWidget {
   const WishlistScreen({super.key});
@@ -56,6 +57,11 @@ class _WishlistScreenState extends ConsumerState<WishlistScreen>
         ),
         actions: [
           IconButton(
+            icon: const Icon(Icons.account_balance_wallet_outlined),
+            tooltip: l10n.incomesTitle,
+            onPressed: () => context.push('/incomes'),
+          ),
+          IconButton(
             icon: const Icon(Icons.language),
             tooltip: l10n.language,
             onPressed: () => showLocalePicker(context),
@@ -83,7 +89,7 @@ class _WishlistScreenState extends ConsumerState<WishlistScreen>
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.go('/wishlist/new'),
+        onPressed: () => context.push('/wishlist/new'),
         tooltip: l10n.addItemTooltip,
         child: const Icon(Icons.add),
       ),
@@ -91,7 +97,7 @@ class _WishlistScreenState extends ConsumerState<WishlistScreen>
   }
 
   void _openItem(WishItem item) {
-    context.go('/wishlist/${item.id}');
+    context.push('/wishlist/${item.id}');
   }
 
   Future<void> _reserve(WishItem item) => _runWithErrorHandling(
@@ -287,18 +293,25 @@ class _ActiveTab extends ConsumerWidget {
     return itemsAsync.when(
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (e, _) => _ErrorView(error: e),
-      data: (items) => items.isEmpty
-          ? _EmptyView(
-              message: l10n.wishlistEmptyActive,
-              icon: Icons.inbox_outlined,
-            )
-          : _ItemsList(
-              items: items,
-              onTapItem: onTapItem,
-              onLongPressItem: onLongPressItem,
-              onReserve: onReserve,
-              onUnreserve: onUnreserve,
-            ),
+       data: (items) => Column(
+        children: [
+          const BalancePanel(),
+          Expanded(
+            child: items.isEmpty
+                ? _EmptyView(
+                    message: l10n.wishlistEmptyActive,
+                    icon: Icons.inbox_outlined,
+                  )
+                : _ItemsList(
+                    items: items,
+                    onTapItem: onTapItem,
+                    onLongPressItem: onLongPressItem,
+                    onReserve: onReserve,
+                    onUnreserve: onUnreserve,
+                  ),
+          ),
+        ],
+      ),
     );
   }
 }

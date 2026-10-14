@@ -100,9 +100,13 @@ class WishItemRepository {
     String? categoryId,
     String? notes,
     String? url,
+    DateTime? boughtAt,
   }) async {
     if (title != null) _validateTitle(title);
     if (estimatedMinor != null) _validateEstimatedMinor(estimatedMinor);
+
+    final existing = await getById(id);
+    final isBought = existing.status == WishItemStatus.bought.dbValue;
 
     final companion = WishItemsCompanion(
       title: Value.absentIfNull(title),
@@ -114,6 +118,10 @@ class WishItemRepository {
       categoryId: Value.absentIfNull(categoryId),
       notes: Value.absentIfNull(notes),
       url: Value.absentIfNull(url),
+      // boughtAt меняем только если статус bought.
+      boughtAt: isBought
+          ? Value.absentIfNull(boughtAt?.toUtc())
+          : const Value.absent(),
       updatedAt: Value(DateTime.now().toUtc()),
     );
 

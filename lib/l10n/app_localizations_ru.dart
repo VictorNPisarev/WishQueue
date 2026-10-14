@@ -160,4 +160,99 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get languageSystem => 'Системный';
+
+  @override
+  String get newIncomeTitle => 'Новое поступление';
+
+  @override
+  String get editIncomeTitle => 'Редактирование поступления';
+
+  @override
+  String get fieldAmount => 'Сумма';
+
+  @override
+  String get fieldAmountHint => 'Например: 80000';
+
+  @override
+  String get fieldDate => 'Дата';
+
+  @override
+  String get fieldWorkedHours => 'Отработанные часы';
+
+  @override
+  String get fieldWorkedHoursHint => 'Например: 120';
+
+  @override
+  String get validationAmountInvalid => 'Укажите положительную сумму';
+
+  @override
+  String get incomesTitle => 'Поступления';
+
+  @override
+  String get addIncomeTooltip => 'Добавить поступление';
+
+  @override
+  String get incomesEmpty =>
+      'Поступлений пока нет.\nНажмите +, чтобы добавить первое.';
+
+  @override
+  String get incomesLoadError => 'Не удалось загрузить поступления.';
+
+  @override
+  String get actionMarkReceived => 'Отметить полученным';
+
+  @override
+  String get incomesLoadFailed => 'Не удалось загрузить';
+
+  @override
+  String get deleteIncomeTitle => 'Удалить поступление?';
+
+  @override
+  String deleteIncomeMessage(String title) {
+    return '«$title» будет удалено без возможности восстановления.';
+  }
+
+  @override
+  String get statusLabelPlanned => 'Ожидается';
+
+  @override
+  String get statusLabelReceived => 'Получено';
+
+  @override
+  String get statusLabelCancelled => 'Отменено';
+
+  @override
+  String get balanceCurrent => 'Текущее';
+
+  @override
+  String get balancePlanned => 'Запланировано';
+
+  @override
+  String get balanceSpent => 'Потрачено';
+
+  @override
+  String get balanceReserved => 'В резерве';
+
+  @override
+  String get balanceRemaining => 'Свободно';
+
+  @override
+  String balancePositionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count позиции',
+      many: '$count позиций',
+      few: '$count позиции',
+      one: '1 позиция',
+      zero: 'нет позиций',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldReceivedAt => 'Дата получения';
+
+  @override
+  String get fieldBoughtAt => 'Дата покупки';
 }
