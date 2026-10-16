@@ -252,6 +252,31 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get fieldBoughtAt => 'Fecha de compra';
+
+  @override
+  String get settings => 'Ajustes';
+
+  @override
+  String get settingsAppearance => 'Apariencia';
+
+  @override
+  String get settingsLanguage => 'Idioma';
+
+  @override
+  String get settingsAbout => 'Acerca de';
+
+  @override
+  String get settingsAboutApp => 'Acerca de WishQueue';
+
+  @override
+  String get settingsAboutText =>
+      'WishQueue es una lista ligera de compras planeadas e ingresos esperados.';
+
+  @override
+  String get settingsVersion => 'Versión';
+
+  @override
+  String get close => 'Cerrar';
 }
 
 /// The translations for Spanish Castilian, as used in Mexico (`es_MX`).
@@ -502,4 +527,29 @@ class AppLocalizationsEsMx extends AppLocalizationsEs {
 
   @override
   String get fieldBoughtAt => 'Fecha de compra';
+
+  @override
+  String get settings => 'Ajustes';
+
+  @override
+  String get settingsAppearance => 'Apariencia';
+
+  @override
+  String get settingsLanguage => 'Idioma';
+
+  @override
+  String get settingsAbout => 'Acerca de';
+
+  @override
+  String get settingsAboutApp => 'Acerca de WishQueue';
+
+  @override
+  String get settingsAboutText =>
+      'WishQueue es una lista ligera de compras planeadas e ingresos esperados.';
+
+  @override
+  String get settingsVersion => 'Versión';
+
+  @override
+  String get close => 'Cerrar';
 }

@@ -1,7 +1,5 @@
 // lib/features/settings/data/settings_repository.dart
 
-import 'package:drift/drift.dart';
-
 import '../../../core/db/database.dart';
 import '../domain/theme_seed.dart';
 

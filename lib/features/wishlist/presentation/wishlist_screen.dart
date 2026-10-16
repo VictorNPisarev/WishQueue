@@ -7,12 +7,10 @@ import 'package:go_router/go_router.dart';
 import '../../../core/db/database.dart';
 import '../../../core/errors/app_exception.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../settings/presentation/widgets/theme_picker_sheet.dart';
 import '../data/wish_item_repository_provider.dart';
 import '../domain/wish_item_status.dart';
 import 'widgets/swipeable_wish_item_tile.dart';
 import 'wishlist_provider.dart';
-import '../../settings/presentation/widgets/locale_picker_sheet.dart';
 import 'widgets/balance_panel.dart';
 
 class WishlistScreen extends ConsumerStatefulWidget {
@@ -62,17 +60,11 @@ class _WishlistScreenState extends ConsumerState<WishlistScreen>
             onPressed: () => context.push('/incomes'),
           ),
           IconButton(
-            icon: const Icon(Icons.language),
-            tooltip: l10n.language,
-            onPressed: () => showLocalePicker(context),
+            icon: const Icon(Icons.settings_outlined),
+            tooltip: l10n.settings,
+            onPressed: () => context.push('/settings'),
           ),
-          IconButton(
-            icon: const Icon(Icons.palette_outlined),
-            tooltip: l10n.themeColor,
-            onPressed: () => showThemePicker(context),
-          ),
-        ],
-      ),
+        ],      ),
       body: TabBarView(
         controller: _tabController,
         children: [

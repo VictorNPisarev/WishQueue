@@ -99,5 +99,15 @@
 		}
 	},
 	"fieldReceivedAt": "收到日期",
-	"fieldBoughtAt": "购买日期"
+	"fieldBoughtAt": "购买日期",
+
+	"settings": "设置",
+	"settingsAppearance": "外观",
+	"settingsLanguage": "语言",
+
+	"settingsAbout": "关于",
+	"settingsAboutApp": "关于 WishQueue",
+	"settingsAboutText": "WishQueue —— 轻量级的计划购买和预期收入清单。",
+	"settingsVersion": "版本",
+	"close": "关闭"
 }

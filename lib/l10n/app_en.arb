@@ -106,5 +106,15 @@
 		}
 	},
 	"fieldReceivedAt": "Date received",
-	"fieldBoughtAt": "Date purchased"
+	"fieldBoughtAt": "Date purchased",
+
+	"settings": "Settings",
+	"settingsAppearance": "Appearance",
+	"settingsLanguage": "Language",
+
+	"settingsAbout": "About",
+	"settingsAboutApp": "About WishQueue",
+	"settingsAboutText": "WishQueue is a lightweight list of planned purchases and expected incomes.",
+	"settingsVersion": "Version",
+	"close": "Close"
 }
