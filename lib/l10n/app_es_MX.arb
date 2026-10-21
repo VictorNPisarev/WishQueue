@@ -109,5 +109,11 @@
 	"settingsAboutApp": "Acerca de WishQueue",
 	"settingsAboutText": "WishQueue es una lista ligera de compras planeadas e ingresos esperados.",
 	"settingsVersion": "Versión",
-	"close": "Cerrar"
+	"close": "Cerrar",
+
+	"tabReserved": "Por comprar",
+	"tabPlanned": "En cola",
+	"tabBought": "Comprados",
+	"wishlistEmptyReserved": "Aún no hay nada planeado para comprar. Desliza a la izquierda en la pestaña «En cola» para agregar.",
+	"wishlistEmptyPlanned": "No hay nada en cola. Toca + para agregar."
 }

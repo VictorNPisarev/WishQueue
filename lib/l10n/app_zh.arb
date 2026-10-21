@@ -109,5 +109,11 @@
 	"settingsAboutApp": "关于 WishQueue",
 	"settingsAboutText": "WishQueue —— 轻量级的计划购买和预期收入清单。",
 	"settingsVersion": "版本",
-	"close": "关闭"
+	"close": "关闭",
+
+	"tabReserved": "待购买",
+	"tabPlanned": "排队中",
+	"tabBought": "已购买",
+	"wishlistEmptyReserved": "尚未计划购买。在「排队中」标签上向左滑动以添加。",
+	"wishlistEmptyPlanned": "队列为空。点击 + 添加。"
 }

@@ -277,6 +277,23 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get close => 'Cerrar';
+
+  @override
+  String get tabReserved => 'Por comprar';
+
+  @override
+  String get tabPlanned => 'En cola';
+
+  @override
+  String get tabBought => 'Comprados';
+
+  @override
+  String get wishlistEmptyReserved =>
+      'Aún no hay nada planeado para comprar. Desliza a la izquierda en la pestaña «En cola» para agregar.';
+
+  @override
+  String get wishlistEmptyPlanned =>
+      'No hay nada en cola. Toca + para agregar.';
 }
 
 /// The translations for Spanish Castilian, as used in Mexico (`es_MX`).
@@ -552,4 +569,21 @@ class AppLocalizationsEsMx extends AppLocalizationsEs {
 
   @override
   String get close => 'Cerrar';
+
+  @override
+  String get tabReserved => 'Por comprar';
+
+  @override
+  String get tabPlanned => 'En cola';
+
+  @override
+  String get tabBought => 'Comprados';
+
+  @override
+  String get wishlistEmptyReserved =>
+      'Aún no hay nada planeado para comprar. Desliza a la izquierda en la pestaña «En cola» para agregar.';
+
+  @override
+  String get wishlistEmptyPlanned =>
+      'No hay nada en cola. Toca + para agregar.';
 }

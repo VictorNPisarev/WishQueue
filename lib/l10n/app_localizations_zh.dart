@@ -273,6 +273,21 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get close => '关闭';
+
+  @override
+  String get tabReserved => '待购买';
+
+  @override
+  String get tabPlanned => '排队中';
+
+  @override
+  String get tabBought => '已购买';
+
+  @override
+  String get wishlistEmptyReserved => '尚未计划购买。在「排队中」标签上向左滑动以添加。';
+
+  @override
+  String get wishlistEmptyPlanned => '队列为空。点击 + 添加。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -544,4 +559,19 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get close => '关闭';
+
+  @override
+  String get tabReserved => '待购买';
+
+  @override
+  String get tabPlanned => '排队中';
+
+  @override
+  String get tabBought => '已购买';
+
+  @override
+  String get wishlistEmptyReserved => '尚未计划购买。在「排队中」标签上向左滑动以添加。';
+
+  @override
+  String get wishlistEmptyPlanned => '队列为空。点击 + 添加。';
 }

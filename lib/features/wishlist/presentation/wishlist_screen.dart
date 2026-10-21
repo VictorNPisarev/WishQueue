@@ -27,7 +27,7 @@ class _WishlistScreenState extends ConsumerState<WishlistScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -64,12 +64,13 @@ class _WishlistScreenState extends ConsumerState<WishlistScreen>
               controller: _tabController,
               tabs: [
                 Tab(
-                  icon: const Icon(Icons.list_alt),
-                  text: l10n.wishlistTabActive,
+                  icon: const Icon(Icons.shopping_cart),
+                  text: l10n.tabReserved,
                 ),
+                Tab(icon: const Icon(Icons.list_alt), text: l10n.tabPlanned),
                 Tab(
                   icon: const Icon(Icons.check_circle_outline),
-                  text: l10n.wishlistTabBought,
+                  text: l10n.tabBought,
                 ),
               ],
             ),
@@ -78,11 +79,15 @@ class _WishlistScreenState extends ConsumerState<WishlistScreen>
         body: TabBarView(
           controller: _tabController,
           children: [
-            _ActiveTab(
+            _ReservedTab(
+              onTapItem: _openItem,
+              onLongPressItem: _showItemMenu,
+              onUnreserve: _unreserve,
+            ),
+            _PlannedTab(
               onTapItem: _openItem,
               onLongPressItem: _showItemMenu,
               onReserve: _reserve,
-              onUnreserve: _unreserve,
             ),
             _BoughtTab(onTapItem: _openItem, onLongPressItem: _showItemMenu),
           ],
@@ -256,25 +261,23 @@ class _WishlistScreenState extends ConsumerState<WishlistScreen>
   }
 }
 
-// --- Вкладка «Активные» ---
+// --- Вкладка «Куплю» (reserved) ---
 
-class _ActiveTab extends ConsumerWidget {
-  const _ActiveTab({
+class _ReservedTab extends ConsumerWidget {
+  const _ReservedTab({
     required this.onTapItem,
     required this.onLongPressItem,
-    required this.onReserve,
     required this.onUnreserve,
   });
 
   final void Function(WishItem) onTapItem;
   final void Function(WishItem) onLongPressItem;
-  final void Function(WishItem) onReserve;
   final void Function(WishItem) onUnreserve;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final itemsAsync = ref.watch(activeWishlistProvider);
+    final itemsAsync = ref.watch(reservedWishlistProvider);
 
     return itemsAsync.when(
       loading: () => const Center(child: CircularProgressIndicator()),
@@ -286,7 +289,59 @@ class _ActiveTab extends ConsumerWidget {
             SliverFillRemaining(
               hasScrollBody: false,
               child: _EmptyView(
-                message: l10n.wishlistEmptyActive,
+                message: l10n.wishlistEmptyReserved,
+                icon: Icons.shopping_cart_outlined,
+              ),
+            )
+          else
+            SliverList.builder(
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                final item = items[index];
+                return SwipeableWishItemTile(
+                  item: item,
+                  onTap: () => onTapItem(item),
+                  onLongPress: () => onLongPressItem(item),
+                  onReserve: () {},
+                  onUnreserve: () => onUnreserve(item),
+                );
+              },
+            ),
+          const SliverToBoxAdapter(child: SizedBox(height: 80)),
+        ],
+      ),
+    );
+  }
+}
+
+// --- Вкладка «В очереди» (planned) ---
+
+class _PlannedTab extends ConsumerWidget {
+  const _PlannedTab({
+    required this.onTapItem,
+    required this.onLongPressItem,
+    required this.onReserve,
+  });
+
+  final void Function(WishItem) onTapItem;
+  final void Function(WishItem) onLongPressItem;
+  final void Function(WishItem) onReserve;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final itemsAsync = ref.watch(plannedWishlistProvider);
+
+    return itemsAsync.when(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (e, _) => _ErrorView(error: e),
+      data: (items) => CustomScrollView(
+        slivers: [
+          if (items.isEmpty)
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: _EmptyView(
+                message: l10n.wishlistEmptyPlanned,
                 icon: Icons.inbox_outlined,
               ),
             )
@@ -300,11 +355,10 @@ class _ActiveTab extends ConsumerWidget {
                   onTap: () => onTapItem(item),
                   onLongPress: () => onLongPressItem(item),
                   onReserve: () => onReserve(item),
-                  onUnreserve: () => onUnreserve(item),
+                  onUnreserve: () {},
                 );
               },
             ),
-          // Низ списка — отступ для FAB.
           const SliverToBoxAdapter(child: SizedBox(height: 80)),
         ],
       ),
@@ -312,7 +366,7 @@ class _ActiveTab extends ConsumerWidget {
   }
 }
 
-// --- Вкладка «Куплено» ---
+// --- Вкладка «Куплено» (bought) ---
 
 class _BoughtTab extends ConsumerWidget {
   const _BoughtTab({required this.onTapItem, required this.onLongPressItem});

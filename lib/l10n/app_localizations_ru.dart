@@ -280,4 +280,21 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get close => 'Закрыть';
+
+  @override
+  String get tabReserved => 'Куплю';
+
+  @override
+  String get tabPlanned => 'В очереди';
+
+  @override
+  String get tabBought => 'Куплено';
+
+  @override
+  String get wishlistEmptyReserved =>
+      'Пока ничего не запланировано к покупке. Свайпните влево на вкладке «В очереди», чтобы добавить.';
+
+  @override
+  String get wishlistEmptyPlanned =>
+      'В очереди пусто. Нажмите +, чтобы добавить.';
 }

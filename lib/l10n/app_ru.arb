@@ -109,5 +109,11 @@
 	"settingsAboutApp": "О WishQueue",
 	"settingsAboutText": "WishQueue — лёгкий список запланированных покупок и ожидаемых поступлений.",
 	"settingsVersion": "Версия",
-	"close": "Закрыть"
+	"close": "Закрыть",
+
+	"tabReserved": "Куплю",
+	"tabPlanned": "В очереди",
+	"tabBought": "Куплено",
+	"wishlistEmptyReserved": "Пока ничего не запланировано к покупке. Свайпните влево на вкладке «В очереди», чтобы добавить.",
+	"wishlistEmptyPlanned": "В очереди пусто. Нажмите +, чтобы добавить."
 }

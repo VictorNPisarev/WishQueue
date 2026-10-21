@@ -277,4 +277,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get close => 'Close';
+
+  @override
+  String get tabReserved => 'To buy';
+
+  @override
+  String get tabPlanned => 'In queue';
+
+  @override
+  String get tabBought => 'Bought';
+
+  @override
+  String get wishlistEmptyReserved =>
+      'Nothing planned to buy yet. Swipe left on the \"In queue\" tab to add.';
+
+  @override
+  String get wishlistEmptyPlanned => 'Nothing in queue. Tap + to add.';
 }

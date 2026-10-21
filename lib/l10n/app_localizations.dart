@@ -613,6 +613,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Close'**
   String get close;
+
+  /// No description provided for @tabReserved.
+  ///
+  /// In en, this message translates to:
+  /// **'To buy'**
+  String get tabReserved;
+
+  /// No description provided for @tabPlanned.
+  ///
+  /// In en, this message translates to:
+  /// **'In queue'**
+  String get tabPlanned;
+
+  /// No description provided for @tabBought.
+  ///
+  /// In en, this message translates to:
+  /// **'Bought'**
+  String get tabBought;
+
+  /// No description provided for @wishlistEmptyReserved.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing planned to buy yet. Swipe left on the \"In queue\" tab to add.'**
+  String get wishlistEmptyReserved;
+
+  /// No description provided for @wishlistEmptyPlanned.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing in queue. Tap + to add.'**
+  String get wishlistEmptyPlanned;
 }
 
 class _AppLocalizationsDelegate

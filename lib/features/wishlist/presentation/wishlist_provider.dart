@@ -4,16 +4,24 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/db/database.dart';
 import '../data/wish_item_repository_provider.dart';
+import '../domain/wish_item_status.dart';
 
-/// Активные позиции: `planned` + `reserved`.
-/// Сортировка: reserved сверху, затем по приоритету.
-final activeWishlistProvider = StreamProvider<List<WishItem>>((ref) {
+/// Позиции, которые решено купить под ближайшее поступление (`reserved`).
+///
+/// Сортировка: по приоритету (urgent → someday), внутри — по дате создания.
+final reservedWishlistProvider = StreamProvider<List<WishItem>>((ref) {
   final repo = ref.watch(wishItemRepositoryProvider);
-  return repo.watchActive();
+  return repo.watchByStatus(WishItemStatus.reserved);
 });
 
-/// Купленные позиции (только `bought`).
+/// Позиции «в очереди» (`planned`) — хотелки, ещё не решено купить.
+final plannedWishlistProvider = StreamProvider<List<WishItem>>((ref) {
+  final repo = ref.watch(wishItemRepositoryProvider);
+  return repo.watchByStatus(WishItemStatus.planned);
+});
+
+/// Купленные позиции (`bought`).
 final boughtWishlistProvider = StreamProvider<List<WishItem>>((ref) {
   final repo = ref.watch(wishItemRepositoryProvider);
-  return repo.watchBought();
+  return repo.watchByStatus(WishItemStatus.bought);
 });

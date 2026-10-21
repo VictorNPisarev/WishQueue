@@ -6,7 +6,6 @@ import '../../../core/db/database.dart';
 import '../../incomes/domain/income_status.dart';
 import '../../incomes/presentation/incomes_provider.dart';
 import '../domain/balance_info.dart';
-import '../domain/wish_item_status.dart';
 import 'wishlist_provider.dart';
 
 /// Панель баланса: текущее и запланированное поступление с расчётами.
@@ -16,13 +15,13 @@ import 'wishlist_provider.dart';
 /// текущего вычитается только купленное после его получения.
 final balanceProvider = Provider<BalanceInfo?>((ref) {
   final incomesAsync = ref.watch(incomesProvider);
-  final activeAsync = ref.watch(activeWishlistProvider);
+  final reservedAsync = ref.watch(reservedWishlistProvider);
   final boughtAsync = ref.watch(boughtWishlistProvider);
 
   final incomes = incomesAsync.valueOrNull;
-  final active = activeAsync.valueOrNull;
+  final reservedItems = reservedAsync.valueOrNull;
   final bought = boughtAsync.valueOrNull;
-  if (incomes == null || active == null || bought == null) return null;
+  if (incomes == null || reservedItems == null || bought == null) return null;
 
   final currentIncome = _latestReceived(incomes);
   final plannedIncome = _nearestPlanned(incomes);
@@ -31,10 +30,6 @@ final balanceProvider = Provider<BalanceInfo?>((ref) {
     return BalanceInfo.empty;
   }
 
-  // Все reserved-позиции.
-  final reservedItems = active.where(
-    (i) => i.status == WishItemStatus.reserved.dbValue,
-  );
   final reservedTotalMinor = reservedItems.fold<int>(
     0,
     (sum, i) => sum + (i.estimatedMinor ?? 0),
@@ -53,9 +48,8 @@ final balanceProvider = Provider<BalanceInfo?>((ref) {
 
     // Если запланированного нет — reserved висят на текущем.
     final reservedForCurrent = plannedIncome == null ? reservedTotalMinor : 0;
-    final reservedCountForCurrent = plannedIncome == null
-        ? reservedItems.length
-        : 0;
+    final reservedCountForCurrent =
+        plannedIncome == null ? reservedItems.length : 0;
 
     current = CurrentIncomeInfo(
       income: currentIncome,
@@ -78,7 +72,6 @@ final balanceProvider = Provider<BalanceInfo?>((ref) {
   return BalanceInfo(current: current, planned: planned);
 });
 
-/// Последнее полученное поступление (по receivedAt).
 Income? _latestReceived(List<Income> incomes) {
   Income? result;
   for (final i in incomes) {
@@ -94,7 +87,6 @@ Income? _latestReceived(List<Income> incomes) {
   return result;
 }
 
-/// Ближайшее запланированное поступление (по plannedDate).
 Income? _nearestPlanned(List<Income> incomes) {
   Income? result;
   for (final i in incomes) {

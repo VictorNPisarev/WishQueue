@@ -116,5 +116,11 @@
 	"settingsAboutApp": "About WishQueue",
 	"settingsAboutText": "WishQueue is a lightweight list of planned purchases and expected incomes.",
 	"settingsVersion": "Version",
-	"close": "Close"
+	"close": "Close",
+
+	"tabReserved": "To buy",
+	"tabPlanned": "In queue",
+	"tabBought": "Bought",
+	"wishlistEmptyReserved": "Nothing planned to buy yet. Swipe left on the \"In queue\" tab to add.",
+	"wishlistEmptyPlanned": "Nothing in queue. Tap + to add."
 }
