@@ -252,4 +252,29 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get fieldBoughtAt => 'Date purchased';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get settingsAppearance => 'Appearance';
+
+  @override
+  String get settingsLanguage => 'Language';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get settingsAboutApp => 'About WishQueue';
+
+  @override
+  String get settingsAboutText =>
+      'WishQueue is a lightweight list of planned purchases and expected incomes.';
+
+  @override
+  String get settingsVersion => 'Version';
+
+  @override
+  String get close => 'Close';
 }

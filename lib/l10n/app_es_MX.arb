@@ -99,5 +99,15 @@
 		}
 	},
 	"fieldReceivedAt": "Fecha de recepción",
-	"fieldBoughtAt": "Fecha de compra"
+	"fieldBoughtAt": "Fecha de compra",
+
+	"settings": "Ajustes",
+	"settingsAppearance": "Apariencia",
+	"settingsLanguage": "Idioma",
+
+	"settingsAbout": "Acerca de",
+	"settingsAboutApp": "Acerca de WishQueue",
+	"settingsAboutText": "WishQueue es una lista ligera de compras planeadas e ingresos esperados.",
+	"settingsVersion": "Versión",
+	"close": "Cerrar"
 }

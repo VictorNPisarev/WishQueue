@@ -1,12 +1,12 @@
 // lib/app/router.dart
 
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/incomes/presentation/income_form_screen.dart';
 import '../features/incomes/presentation/incomes_screen.dart';
 import '../features/wishlist/presentation/wish_item_form_screen.dart';
 import '../features/wishlist/presentation/wishlist_screen.dart';
+import '../features/settings/presentation/settings_screen.dart';
 
 /// Корневой роутер приложения.
 final appRouter = GoRouter(
@@ -46,6 +46,12 @@ final appRouter = GoRouter(
               IncomeFormScreen(incomeId: state.pathParameters['id']),
         ),
       ],
+    ),
+
+    // Settings
+    GoRoute(
+      path: '/settings',
+      builder: (context, state) => const SettingsScreen(),
     ),
   ],
 );

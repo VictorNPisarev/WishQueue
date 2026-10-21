@@ -249,6 +249,30 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get fieldBoughtAt => '购买日期';
+
+  @override
+  String get settings => '设置';
+
+  @override
+  String get settingsAppearance => '外观';
+
+  @override
+  String get settingsLanguage => '语言';
+
+  @override
+  String get settingsAbout => '关于';
+
+  @override
+  String get settingsAboutApp => '关于 WishQueue';
+
+  @override
+  String get settingsAboutText => 'WishQueue —— 轻量级的计划购买和预期收入清单。';
+
+  @override
+  String get settingsVersion => '版本';
+
+  @override
+  String get close => '关闭';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -496,4 +520,28 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get fieldBoughtAt => '购买日期';
+
+  @override
+  String get settings => '设置';
+
+  @override
+  String get settingsAppearance => '外观';
+
+  @override
+  String get settingsLanguage => '语言';
+
+  @override
+  String get settingsAbout => '关于';
+
+  @override
+  String get settingsAboutApp => '关于 WishQueue';
+
+  @override
+  String get settingsAboutText => 'WishQueue —— 轻量级的计划购买和预期收入清单。';
+
+  @override
+  String get settingsVersion => '版本';
+
+  @override
+  String get close => '关闭';
 }

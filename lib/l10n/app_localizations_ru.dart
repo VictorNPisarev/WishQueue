@@ -255,4 +255,29 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get fieldBoughtAt => 'Дата покупки';
+
+  @override
+  String get settings => 'Настройки';
+
+  @override
+  String get settingsAppearance => 'Оформление';
+
+  @override
+  String get settingsLanguage => 'Язык';
+
+  @override
+  String get settingsAbout => 'О программе';
+
+  @override
+  String get settingsAboutApp => 'О WishQueue';
+
+  @override
+  String get settingsAboutText =>
+      'WishQueue — лёгкий список запланированных покупок и ожидаемых поступлений.';
+
+  @override
+  String get settingsVersion => 'Версия';
+
+  @override
+  String get close => 'Закрыть';
 }

@@ -99,5 +99,15 @@
 		}
 	},
 	"fieldReceivedAt": "Дата получения",
-	"fieldBoughtAt": "Дата покупки"
+	"fieldBoughtAt": "Дата покупки",
+
+	"settings": "Настройки",
+	"settingsAppearance": "Оформление",
+	"settingsLanguage": "Язык",
+
+	"settingsAbout": "О программе",
+	"settingsAboutApp": "О WishQueue",
+	"settingsAboutText": "WishQueue — лёгкий список запланированных покупок и ожидаемых поступлений.",
+	"settingsVersion": "Версия",
+	"close": "Закрыть"
 }

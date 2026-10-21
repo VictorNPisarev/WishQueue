@@ -565,6 +565,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Date purchased'**
   String get fieldBoughtAt;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// No description provided for @settingsAppearance.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get settingsAppearance;
+
+  /// No description provided for @settingsLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get settingsLanguage;
+
+  /// No description provided for @settingsAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get settingsAbout;
+
+  /// No description provided for @settingsAboutApp.
+  ///
+  /// In en, this message translates to:
+  /// **'About WishQueue'**
+  String get settingsAboutApp;
+
+  /// No description provided for @settingsAboutText.
+  ///
+  /// In en, this message translates to:
+  /// **'WishQueue is a lightweight list of planned purchases and expected incomes.'**
+  String get settingsAboutText;
+
+  /// No description provided for @settingsVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Version'**
+  String get settingsVersion;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
 }
 
 class _AppLocalizationsDelegate
