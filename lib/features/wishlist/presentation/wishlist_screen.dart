@@ -9,9 +9,9 @@ import '../../../core/errors/app_exception.dart';
 import '../../../l10n/app_localizations.dart';
 import '../data/wish_item_repository_provider.dart';
 import '../domain/wish_item_status.dart';
+import 'widgets/balance_panel.dart';
 import 'widgets/swipeable_wish_item_tile.dart';
 import 'wishlist_provider.dart';
-import 'widgets/balance_panel.dart';
 
 class WishlistScreen extends ConsumerStatefulWidget {
   const WishlistScreen({super.key});
@@ -41,44 +41,52 @@ class _WishlistScreenState extends ConsumerState<WishlistScreen>
     final l10n = AppLocalizations.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.appTitle),
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: [
-            Tab(icon: const Icon(Icons.list_alt), text: l10n.wishlistTabActive),
-            Tab(
-              icon: const Icon(Icons.check_circle_outline),
-              text: l10n.wishlistTabBought,
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          SliverAppBar(
+            title: Text(l10n.appTitle),
+            pinned: true,
+            floating: true,
+            snap: true,
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.account_balance_wallet_outlined),
+                tooltip: l10n.incomesTitle,
+                onPressed: () => context.push('/incomes'),
+              ),
+              IconButton(
+                icon: const Icon(Icons.settings_outlined),
+                tooltip: l10n.settings,
+                onPressed: () => context.push('/settings'),
+              ),
+            ],
+            bottom: TabBar(
+              controller: _tabController,
+              tabs: [
+                Tab(
+                  icon: const Icon(Icons.list_alt),
+                  text: l10n.wishlistTabActive,
+                ),
+                Tab(
+                  icon: const Icon(Icons.check_circle_outline),
+                  text: l10n.wishlistTabBought,
+                ),
+              ],
             ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.account_balance_wallet_outlined),
-            tooltip: l10n.incomesTitle,
-            onPressed: () => context.push('/incomes'),
-          ),
-          IconButton(
-            icon: const Icon(Icons.settings_outlined),
-            tooltip: l10n.settings,
-            onPressed: () => context.push('/settings'),
-          ),
-        ],      ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          _ActiveTab(
-            onTapItem: _openItem,
-            onLongPressItem: _showItemMenu,
-            onReserve: _reserve,
-            onUnreserve: _unreserve,
-          ),
-          _BoughtTab(
-            onTapItem: _openItem,
-            onLongPressItem: _showItemMenu,
           ),
         ],
+        body: TabBarView(
+          controller: _tabController,
+          children: [
+            _ActiveTab(
+              onTapItem: _openItem,
+              onLongPressItem: _showItemMenu,
+              onReserve: _reserve,
+              onUnreserve: _unreserve,
+            ),
+            _BoughtTab(onTapItem: _openItem, onLongPressItem: _showItemMenu),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.push('/wishlist/new'),
@@ -88,25 +96,29 @@ class _WishlistScreenState extends ConsumerState<WishlistScreen>
     );
   }
 
+  // --- Навигация ---
+
   void _openItem(WishItem item) {
     context.push('/wishlist/${item.id}');
   }
 
+  // --- Действия над позицией ---
+
   Future<void> _reserve(WishItem item) => _runWithErrorHandling(
-        () => ref.read(wishItemRepositoryProvider).reserve(item.id),
-      );
+    () => ref.read(wishItemRepositoryProvider).reserve(item.id),
+  );
 
   Future<void> _unreserve(WishItem item) => _runWithErrorHandling(
-        () => ref.read(wishItemRepositoryProvider).unreserve(item.id),
-      );
+    () => ref.read(wishItemRepositoryProvider).unreserve(item.id),
+  );
 
   Future<void> _markBought(WishItem item) => _runWithErrorHandling(
-        () => ref.read(wishItemRepositoryProvider).markBought(item.id),
-      );
+    () => ref.read(wishItemRepositoryProvider).markBought(item.id),
+  );
 
   Future<void> _cancel(WishItem item) => _runWithErrorHandling(
-        () => ref.read(wishItemRepositoryProvider).cancel(item.id),
-      );
+    () => ref.read(wishItemRepositoryProvider).cancel(item.id),
+  );
 
   Future<void> _delete(WishItem item) async {
     final l10n = AppLocalizations.of(context);
@@ -144,13 +156,12 @@ class _WishlistScreenState extends ConsumerState<WishlistScreen>
     } on AppException catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(e.message),
-          backgroundColor: Colors.red,
-        ),
+        SnackBar(content: Text(e.message), backgroundColor: Colors.red),
       );
     }
   }
+
+  // --- Контекстное меню ---
 
   void _showItemMenu(WishItem item) {
     final l10n = AppLocalizations.of(context);
@@ -180,26 +191,18 @@ class _WishlistScreenState extends ConsumerState<WishlistScreen>
               _menuTile(
                 icon: Icons.bookmark_add,
                 label: l10n.actionReserve,
-                onTap: () => _closeAndRun(
-                  sheetContext,
-                  () => _reserve(item),
-                ),
+                onTap: () => _closeAndRun(sheetContext, () => _reserve(item)),
               ),
               _menuTile(
                 icon: Icons.shopping_cart_checkout,
                 label: l10n.actionBuyNow,
-                onTap: () => _closeAndRun(
-                  sheetContext,
-                  () => _markBought(item),
-                ),
+                onTap: () =>
+                    _closeAndRun(sheetContext, () => _markBought(item)),
               ),
               _menuTile(
                 icon: Icons.cancel_outlined,
                 label: l10n.actionCancel,
-                onTap: () => _closeAndRun(
-                  sheetContext,
-                  () => _cancel(item),
-                ),
+                onTap: () => _closeAndRun(sheetContext, () => _cancel(item)),
               ),
             ],
 
@@ -207,26 +210,18 @@ class _WishlistScreenState extends ConsumerState<WishlistScreen>
               _menuTile(
                 icon: Icons.undo,
                 label: l10n.actionUnreserve,
-                onTap: () => _closeAndRun(
-                  sheetContext,
-                  () => _unreserve(item),
-                ),
+                onTap: () => _closeAndRun(sheetContext, () => _unreserve(item)),
               ),
               _menuTile(
                 icon: Icons.shopping_cart_checkout,
                 label: l10n.actionBuyNow,
-                onTap: () => _closeAndRun(
-                  sheetContext,
-                  () => _markBought(item),
-                ),
+                onTap: () =>
+                    _closeAndRun(sheetContext, () => _markBought(item)),
               ),
               _menuTile(
                 icon: Icons.cancel_outlined,
                 label: l10n.actionCancel,
-                onTap: () => _closeAndRun(
-                  sheetContext,
-                  () => _cancel(item),
-                ),
+                onTap: () => _closeAndRun(sheetContext, () => _cancel(item)),
               ),
             ],
 
@@ -234,10 +229,7 @@ class _WishlistScreenState extends ConsumerState<WishlistScreen>
               icon: Icons.delete_outline,
               label: l10n.actionDelete,
               color: Colors.red,
-              onTap: () => _closeAndRun(
-                sheetContext,
-                () => _delete(item),
-              ),
+              onTap: () => _closeAndRun(sheetContext, () => _delete(item)),
             ),
           ],
         ),
@@ -264,6 +256,8 @@ class _WishlistScreenState extends ConsumerState<WishlistScreen>
   }
 }
 
+// --- Вкладка «Активные» ---
+
 class _ActiveTab extends ConsumerWidget {
   const _ActiveTab({
     required this.onTapItem,
@@ -285,34 +279,43 @@ class _ActiveTab extends ConsumerWidget {
     return itemsAsync.when(
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (e, _) => _ErrorView(error: e),
-       data: (items) => Column(
-        children: [
-          const BalancePanel(),
-          Expanded(
-            child: items.isEmpty
-                ? _EmptyView(
-                    message: l10n.wishlistEmptyActive,
-                    icon: Icons.inbox_outlined,
-                  )
-                : _ItemsList(
-                    items: items,
-                    onTapItem: onTapItem,
-                    onLongPressItem: onLongPressItem,
-                    onReserve: onReserve,
-                    onUnreserve: onUnreserve,
-                  ),
-          ),
+      data: (items) => CustomScrollView(
+        slivers: [
+          const SliverToBoxAdapter(child: BalancePanel()),
+          if (items.isEmpty)
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: _EmptyView(
+                message: l10n.wishlistEmptyActive,
+                icon: Icons.inbox_outlined,
+              ),
+            )
+          else
+            SliverList.builder(
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                final item = items[index];
+                return SwipeableWishItemTile(
+                  item: item,
+                  onTap: () => onTapItem(item),
+                  onLongPress: () => onLongPressItem(item),
+                  onReserve: () => onReserve(item),
+                  onUnreserve: () => onUnreserve(item),
+                );
+              },
+            ),
+          // Низ списка — отступ для FAB.
+          const SliverToBoxAdapter(child: SizedBox(height: 80)),
         ],
       ),
     );
   }
 }
 
+// --- Вкладка «Куплено» ---
+
 class _BoughtTab extends ConsumerWidget {
-  const _BoughtTab({
-    required this.onTapItem,
-    required this.onLongPressItem,
-  });
+  const _BoughtTab({required this.onTapItem, required this.onLongPressItem});
 
   final void Function(WishItem) onTapItem;
   final void Function(WishItem) onLongPressItem;
@@ -325,55 +328,38 @@ class _BoughtTab extends ConsumerWidget {
     return itemsAsync.when(
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (e, _) => _ErrorView(error: e),
-      data: (items) => items.isEmpty
-          ? _EmptyView(
-              message: l10n.wishlistEmptyBought,
-              icon: Icons.check_circle_outline,
+      data: (items) => CustomScrollView(
+        slivers: [
+          if (items.isEmpty)
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: _EmptyView(
+                message: l10n.wishlistEmptyBought,
+                icon: Icons.check_circle_outline,
+              ),
             )
-          : _ItemsList(
-              items: items,
-              onTapItem: onTapItem,
-              onLongPressItem: onLongPressItem,
-              onReserve: (_) {},
-              onUnreserve: (_) {},
+          else
+            SliverList.builder(
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                final item = items[index];
+                return SwipeableWishItemTile(
+                  item: item,
+                  onTap: () => onTapItem(item),
+                  onLongPress: () => onLongPressItem(item),
+                  onReserve: () {},
+                  onUnreserve: () {},
+                );
+              },
             ),
+          const SliverToBoxAdapter(child: SizedBox(height: 80)),
+        ],
+      ),
     );
   }
 }
 
-class _ItemsList extends StatelessWidget {
-  const _ItemsList({
-    required this.items,
-    required this.onTapItem,
-    required this.onLongPressItem,
-    required this.onReserve,
-    required this.onUnreserve,
-  });
-
-  final List<WishItem> items;
-  final void Function(WishItem) onTapItem;
-  final void Function(WishItem) onLongPressItem;
-  final void Function(WishItem) onReserve;
-  final void Function(WishItem) onUnreserve;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        final item = items[index];
-        return SwipeableWishItemTile(
-          item: item,
-          onTap: () => onTapItem(item),
-          onLongPress: () => onLongPressItem(item),
-          onReserve: () => onReserve(item),
-          onUnreserve: () => onUnreserve(item),
-        );
-      },
-    );
-  }
-}
+// --- Пустое состояние и ошибка ---
 
 class _EmptyView extends StatelessWidget {
   const _EmptyView({required this.message, required this.icon});
